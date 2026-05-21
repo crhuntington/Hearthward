@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearthward</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+body{background:#1a2330;background-image:radial-gradient(ellipse 70% 60% at 15% 50%,rgba(196,105,74,.07) 0%,transparent 55%),radial-gradient(ellipse 55% 55% at 85% 40%,rgba(61,75,92,.2) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100vh;gap:10px;padding:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
+.hw-label{display:flex;align-items:center;gap:8px}
+.hw-label-title{font-size:14px;font-weight:600;color:rgba(255,255,255,.85)}
+.hw-label-dot{width:4px;height:4px;border-radius:50%;background:#C4694A}
+.hw-label-sub{font-size:13px;color:rgba(255,255,255,.35)}
+.phone{width:360px;height:calc(100vh - 60px);max-height:720px;background:#F7F4EF;border-radius:40px;border:2px solid #2A3547;overflow:hidden;display:flex;flex-direction:column;}
+.status{background:#22303E;padding:10px 20px 8px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.status span{color:#fff;font-size:12px;font-weight:500}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;min-height:0}
+.scroll::-webkit-scrollbar{display:none}
+.tab{display:none;width:100%}
+.tab.active{display:block;width:100%;padding-bottom:20px}
+.bottom-nav{background:#F7F4EF;display:flex;border-top:0.5px solid rgba(61,75,92,.2);flex-shrink:0;width:100%}
+.bottom-nav button{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;padding:8px 2px 10px;cursor:pointer;background:#F7F4EF;color:#8C8478;border:none;font-family:-apple-system,sans-serif;gap:3px;position:relative}
+.bottom-nav button.active{color:#C4694A}
+.bottom-nav button.active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:3px;background:#C4694A;border-radius:0 0 3px 3px}
+.bottom-nav button span{font-size:10px;font-weight:500;display:block}
+.phd{background:#22303E;padding:14px 20px 16px;width:100%}
+.phd-title{color:#fff;font-size:22px;font-weight:600}
+.phd-sub{color:rgba(255,255,255,.55);font-size:12px;margin-top:2px}
+.phl{padding:14px 18px 8px;background:#F7F4EF}
+.phl-title{color:#22303E;font-size:22px;font-weight:700}
+.sl{font-size:11px;font-weight:600;color:#8C8478;letter-spacing:.05em;text-transform:uppercase;padding:8px 20px 5px}
+.card{background:#fff;border-radius:14px;margin:0 14px 10px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.card-pad{padding:14px 16px}
+.badge{font-size:11px;font-weight:500;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.bo{background:#FAECE7;color:#993C1D}
+.bs{background:#FFF3E0;color:#854F0B}
+.bg{background:#EAF3DE;color:#3B6D11}
+.inner-tabs{display:flex;margin:0 18px 12px;background:#EDE9E2;border-radius:10px;padding:3px;gap:2px}
+.inner-tab{flex:1;text-align:center;padding:7px 0;font-size:13px;font-weight:500;color:#8C8478;cursor:pointer;border-radius:8px;background:transparent;border:none;font-family:-apple-system,sans-serif}
+.inner-tab.active{background:#fff;color:#22303E}
+.period-tabs{display:flex;margin:0 14px 12px;border-bottom:1.5px solid rgba(0,0,0,.08)}
+.period-tab{flex:1;text-align:center;padding:8px 4px;font-size:12px;font-weight:500;color:#8C8478;cursor:pointer;background:transparent;border:none;font-family:-apple-system,sans-serif;position:relative;white-space:nowrap}
+.period-tab.active{color:#22303E;font-weight:600}
+.period-tab.active::after{content:'';position:absolute;bottom:-1.5px;left:15%;width:70%;height:2px;background:#C4694A;border-radius:2px}
+.s-tabs{display:flex;gap:6px;margin:6px 0 10px;padding:0 14px;width:100%;overflow-x:auto;scrollbar-width:none}
+.s-tabs::-webkit-scrollbar{display:none}
+.s-tab{flex-shrink:0;padding:6px 12px;font-size:11px;font-weight:500;color:#3D4B5C;cursor:pointer;background:#fff;border:.5px solid rgba(0,0,0,.15);border-radius:20px;font-family:-apple-system,sans-serif;white-space:nowrap}
+.s-tab.active{background:#22303E;color:#fff;border-color:#22303E;font-weight:600}
+.agent-card{background:#fff;border-radius:14px;margin:10px 14px 10px;border:.5px solid rgba(0,0,0,.08);border-left:3px solid #C4694A;overflow:hidden;width:calc(100% - 28px)}
+.agent-card-label{background:#FFF7F5;padding:5px 14px;border-bottom:.5px solid rgba(196,105,74,.15);display:flex;align-items:center;gap:6px}
+.agent-card-label span{font-size:10px;font-weight:600;color:#C4694A;letter-spacing:.06em;text-transform:uppercase}
+.agent-card-body{padding:10px 14px 12px}
+.agent-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.avatar{width:40px;height:40px;border-radius:50%;background:#3D4B5C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0}
+.avatar.agent-av{border:2px solid #C4694A}
+.avatar.terra{background:#C4694A}
+.agent-name{font-size:14px;font-weight:600;color:#22303E}
+.agent-meta{font-size:11px;color:#8C8478}
+.btn-row{display:flex;gap:8px}
+.pill-btn{background:#F7F4EF;border:.5px solid rgba(0,0,0,.15);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:500;color:#22303E;cursor:pointer;font-family:-apple-system,sans-serif}
+.pill-btn-primary{background:#C4694A;border:none;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif}
+.val-label{font-size:10px;color:#8C8478;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.val-hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.val-big{font-size:26px;font-weight:700;color:#22303E;line-height:1}
+.val-up{font-size:12px;color:#C4694A;font-weight:500;margin-top:4px}
+.val-stat-strip{display:flex;background:#F7F4EF;border-top:.5px solid rgba(0,0,0,.07)}
+.val-stat{flex:1;padding:9px 10px;text-align:center}
+.val-stat:not(:last-child){border-right:.5px solid rgba(0,0,0,.07)}
+.val-stat-label{font-size:10px;color:#8C8478}
+.val-stat-val{font-size:12px;font-weight:600;color:#22303E;margin-top:2px}
+.val-stat-val.equity{color:#C4694A}
+.agent-post{background:#fff;border-radius:14px;margin:0 14px 10px;border:.5px solid rgba(0,0,0,.08);padding:12px 14px;display:flex;gap:10px;width:calc(100% - 28px)}
+.post-text{font-size:13px;color:#3D4B5C;line-height:1.5;flex:1}
+.post-time{font-size:11px;color:#8C8478;margin-top:5px}
+.task-row{padding:10px 16px;display:flex;align-items:center;gap:10px}
+.task-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.task-circle{width:18px;height:18px;border-radius:50%;border:1.5px solid #C4C0B8;flex-shrink:0}
+.task-info{flex:1;min-width:0}
+.task-name{font-size:13px;color:#22303E;font-weight:500}
+.task-due{font-size:11px;color:#8C8478;margin-top:1px}
+.group-label{font-size:11px;font-weight:600;color:#8C8478;letter-spacing:.05em;text-transform:uppercase;padding:4px 18px 6px}
+.task-card{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.09);width:calc(100% - 28px);padding:12px 12px 10px}
+.task-card.overdue{border:.5px solid rgba(196,105,74,.3);border-left:3px solid #C4694A}
+.task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:5px}
+.task-title{font-size:13px;font-weight:600;color:#22303E;flex:1}
+.task-desc{font-size:11px;color:#8C8478;line-height:1.5;margin-bottom:7px}
+.task-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+.meta-tag{background:#F7F4EF;border-radius:6px;padding:2px 6px;font-size:11px;color:#3D4B5C;font-weight:500}
+.task-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:.5px solid rgba(0,0,0,.07)}
+.mark-done-btn{background:#EAF3DE;border:none;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:500;color:#3B6D11;cursor:pointer;font-family:-apple-system,sans-serif}
+.freq-label{font-size:11px;color:#8C8478}
+.app-list{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.app-row{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.app-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.app-icon-wrap{width:34px;height:34px;border-radius:9px;background:#F7F4EF;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700;color:#3D4B5C}
+.app-info{flex:1;min-width:0}
+.app-name{font-size:13px;font-weight:600;color:#22303E}
+.app-sub{font-size:11px;color:#8C8478;margin-top:1px}
+.app-right{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.dot{width:7px;height:7px;border-radius:50%;background:#C4C0B8}
+.dot.green{background:#3B6D11}
+.dot.orange{background:#C4694A}
+.dot.empty{background:transparent;border:1.5px solid #C4C0B8}
+.add-btn-dashed{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 14px 0;width:calc(100% - 28px);padding:12px;background:#fff;border-radius:12px;border:1px dashed rgba(61,75,92,.25);color:#3D4B5C;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif}
+.app-cat-hdr{display:flex;align-items:center;gap:9px;padding:10px 18px 5px}
+.app-cat-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700}
+.aci-gr{background:#EAF3DE;color:#3B6D11}
+.aci-bl{background:#E6F1FB;color:#185FA5}
+.aci-am{background:#FAEEDA;color:#854F0B}
+.aci-re{background:#FAECE7;color:#993C1D}
+.aci-pu{background:#EEEDFE;color:#534AB7}
+.app-cat-title{font-size:13px;font-weight:600;color:#22303E}
+.app-cat-sub{font-size:11px;color:#8C8478}
+.app-det-view{display:none;width:100%;padding-bottom:20px}
+.app-det-view.adv-active{display:block}
+.back-bar-app{background:#3D4B5C;padding:9px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.back-circle-app{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;border:none;color:#fff;font-size:15px}
+.back-lbl-app{color:#fff;font-size:13px;font-weight:500;cursor:pointer;background:none;border:none;font-family:-apple-system,sans-serif}
+.adet-hdr{background:#22303E;padding:8px 20px 12px}
+.adet-title{color:#fff;font-size:17px;font-weight:600;margin-top:2px}
+.adet-sub{color:rgba(255,255,255,.55);font-size:11px;margin-top:2px}
+.asl{font-size:10px;font-weight:600;color:#8C8478;letter-spacing:.08em;text-transform:uppercase;padding:8px 20px 5px}
+.afc{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.afrow{display:flex;align-items:center;padding:9px 14px;gap:10px}
+.afrow:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.aflbl{font-size:12px;color:#3D4B5C;font-weight:500;width:110px;flex-shrink:0}
+.afinp{flex:1;border:none;outline:none;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;background:transparent;text-align:right;min-width:0}
+.aitag{background:#EEEDFE;color:#534AB7;font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.amc{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.amrow{padding:9px 14px;display:flex;align-items:flex-start;gap:10px}
+.amrow:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.amname{font-size:13px;font-weight:500;color:#22303E}
+.amfreq{font-size:11px;color:#8C8478;margin-top:2px}
+.anc{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.anta{width:100%;border:none;outline:none;font-size:13px;color:#3D4B5C;font-family:-apple-system,sans-serif;padding:10px 14px;resize:none;height:65px;background:transparent;line-height:1.5}
+.asave{display:block;width:calc(100% - 28px);margin:4px 14px 0;background:#C4694A;color:#fff;border:none;border-radius:10px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif}
+.chart-wrap{padding:0 16px 10px}
+.chart-bars{display:flex;align-items:flex-end;gap:5px;height:55px}
+.bar{flex:1;border-radius:3px 3px 0 0;background:#DDD9D2}
+.bar.hi{background:#C4694A}
+.chart-labels{display:flex;justify-content:space-between;padding:3px 0 0}
+.chart-lbl{font-size:10px;color:#8C8478}
+.equity-row{display:flex;gap:7px;padding:0 14px 8px;width:100%}
+.equity-cell{flex:1;background:#fff;border-radius:10px;border:.5px solid rgba(0,0,0,.08);padding:8px 10px;text-align:center;min-width:0}
+.equity-cell.highlighted{border:1.5px solid #C4694A}
+.equity-cell-label{font-size:10px;color:#8C8478;margin-bottom:2px}
+.equity-cell-val{font-size:12px;font-weight:600;color:#22303E}
+.equity-cell.highlighted .equity-cell-val{color:#C4694A}
+.comp-row{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.comp-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.comp-addr{font-size:13px;color:#22303E;font-weight:500}
+.comp-detail{font-size:11px;color:#8C8478;margin-top:1px}
+.comp-price{font-size:13px;font-weight:600;color:#22303E;white-space:nowrap}
+.equity-ring-wrap{display:flex;align-items:center;justify-content:center;padding:12px 0 6px}
+.equity-ring{position:relative;width:100px;height:100px}
+.equity-ring svg{transform:rotate(-90deg)}
+.equity-ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.equity-ring-amount{font-size:13px;font-weight:700;color:#22303E}
+.equity-ring-label{font-size:10px;color:#8C8478;margin-top:1px}
+.calc-field{padding:0 16px 8px}
+.calc-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.calc-label span{font-size:12px;color:#3D4B5C;font-weight:500}
+.val-display{font-size:12px;color:#22303E;font-weight:600}
+input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
+.equity-breakdown{display:flex;gap:7px;padding:0 16px 10px}
+.eq-cell{flex:1;background:#F7F4EF;border-radius:9px;padding:8px;text-align:center}
+.eq-cell-label{font-size:10px;color:#8C8478;margin-bottom:2px}
+.eq-cell-val{font-size:12px;font-weight:600;color:#22303E}
+.eq-cell-val.green{color:#3B6D11}
+.mort-result{background:#22303E;border-radius:12px;margin:0 14px 10px;padding:12px;width:calc(100% - 28px)}
+.mort-result-label{color:rgba(255,255,255,.6);font-size:11px;margin-bottom:3px}
+.mort-result-amount{color:#fff;font-size:26px;font-weight:700}
+.mort-result-sub{color:rgba(255,255,255,.6);font-size:11px;margin-top:3px}
+.mort-breakdown{display:flex;border-top:.5px solid rgba(255,255,255,.15);margin-top:9px;padding-top:9px}
+.mort-cell{flex:1}
+.mort-cell-label{color:rgba(255,255,255,.55);font-size:10px}
+.mort-cell-val{color:#fff;font-size:12px;font-weight:600;margin-top:2px}
+.input-row{padding:0 14px 8px}
+.input-label{font-size:12px;color:#3D4B5C;font-weight:500;margin-bottom:4px}
+.input-with-prefix{display:flex;align-items:center;background:#fff;border-radius:9px;border:.5px solid rgba(0,0,0,.12);overflow:hidden}
+.input-prefix{padding:0 10px;font-size:12px;color:#8C8478;border-right:.5px solid rgba(0,0,0,.1);height:34px;display:flex;align-items:center;flex-shrink:0}
+.input-with-prefix input{flex:1;border:none;outline:none;padding:0 10px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;height:34px;background:transparent}
+.seg-control{display:flex;background:#EDE9E2;border-radius:8px;padding:2px}
+.seg-btn{flex:1;text-align:center;padding:5px 0;font-size:11px;font-weight:500;color:#8C8478;border:none;background:transparent;border-radius:6px;cursor:pointer;font-family:-apple-system,sans-serif}
+.seg-btn.active{background:#fff;color:#22303E}
+.divider-label{font-size:10px;font-weight:600;color:#8C8478;letter-spacing:.06em;text-transform:uppercase;padding:4px 14px 6px}
+.boost-intro{background:#22303E;border-radius:12px;padding:12px;margin:0 14px 10px;width:calc(100% - 28px)}
+.boost-intro-title{color:#fff;font-size:14px;font-weight:600;margin-bottom:3px}
+.boost-intro-sub{color:rgba(255,255,255,.6);font-size:11px;line-height:1.5}
+.cat-filter{display:flex;gap:5px;padding:4px 14px 8px;overflow-x:auto;scrollbar-width:none}
+.cat-filter::-webkit-scrollbar{display:none}
+.cf-btn{background:#fff;border:.5px solid rgba(0,0,0,.15);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:500;color:#3D4B5C;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:-apple-system,sans-serif}
+.cf-btn.sel{background:#22303E;color:#fff;border-color:#22303E}
+.project-card{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.project-top{padding:10px 12px 7px;display:flex;align-items:flex-start;gap:10px}
+.project-icon-wrap{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700}
+.ic-green{background:#EAF3DE;color:#3B6D11}
+.ic-amber{background:#FAEEDA;color:#854F0B}
+.project-info{flex:1;min-width:0}
+.project-name{font-size:13px;font-weight:600;color:#22303E}
+.project-cat{font-size:11px;color:#8C8478;margin-top:1px}
+.roi-badge{font-size:11px;font-weight:700;padding:3px 7px;border-radius:7px;white-space:nowrap;background:#EAF3DE;color:#3B6D11}
+.project-desc{padding:7px 12px 10px;font-size:12px;color:#8C8478;line-height:1.5;border-top:.5px solid rgba(0,0,0,.06)}
+.pview{display:none;width:100%;padding-bottom:20px}
+.pview.active{display:block}
+.fr{display:flex;gap:7px;padding:8px 14px 4px;overflow-x:auto;scrollbar-width:none}
+.fr::-webkit-scrollbar{display:none}
+.fb{background:#fff;border:.5px solid rgba(0,0,0,.15);border-radius:20px;padding:4px 12px;font-size:12px;color:#3D4B5C;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:-apple-system,sans-serif}
+.fb.sel{background:#22303E;color:#fff;border-color:#22303E}
+.pcard{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.prow{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.prow:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.pavatar{width:36px;height:36px;border-radius:9px;background:#3D4B5C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;flex-shrink:0}
+.pavatar.own{background:#C4694A}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:13px;font-weight:600;color:#22303E}
+.pmeta{font-size:11px;color:#8C8478;margin-top:1px}
+.pstars{color:#C4694A;font-size:11px;margin-top:1px}
+.disc-badge{background:#EAF3DE;color:#3B6D11;font-size:10px;font-weight:600;padding:2px 6px;border-radius:20px;white-space:nowrap}
+.back-btn{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.7);font-size:12px;background:none;border:none;cursor:pointer;font-family:-apple-system,sans-serif;margin-bottom:10px;padding:0}
+.detail-avatar{width:46px;height:46px;border-radius:11px;background:#C4694A;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:600;flex-shrink:0}
+.bio-card{background:#fff;border-radius:12px;margin:8px 14px 0;border:.5px solid rgba(0,0,0,.08);padding:12px 14px;width:calc(100% - 28px)}
+.bio-label{font-size:10px;font-weight:600;color:#8C8478;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.bio-text{font-size:13px;color:#3D4B5C;line-height:1.6}
+.endorse-card{background:#F7F4EF;border-radius:12px;margin:8px 14px 0;border:.5px solid rgba(0,0,0,.08);padding:12px 14px;width:calc(100% - 28px)}
+.endorse-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.endorse-av{width:28px;height:28px;border-radius:50%;background:#3D4B5C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600;flex-shrink:0}
+.endorse-name{font-size:12px;font-weight:600;color:#22303E}
+.endorse-text{font-size:12px;color:#3D4B5C;line-height:1.5;font-style:italic}
+.discount-card{background:#EAF3DE;border-radius:12px;margin:8px 14px 0;border:.5px solid rgba(59,109,17,.2);padding:10px 14px;width:calc(100% - 28px);display:flex;align-items:center;gap:10px}
+.discount-title{font-size:13px;font-weight:600;color:#3B6D11}
+.action-row{display:flex;gap:7px;margin:8px 14px 0;width:calc(100% - 28px)}
+.action-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;border:.5px solid rgba(0,0,0,.12);border-radius:9px;padding:9px;font-size:12px;font-weight:500;color:#22303E;cursor:pointer;font-family:-apple-system,sans-serif}
+.form-field{padding:0 14px 10px}
+.form-label{font-size:12px;color:#3D4B5C;font-weight:500;margin-bottom:4px}
+.form-input{width:100%;background:#fff;border:.5px solid rgba(0,0,0,.12);border-radius:9px;padding:0 12px;height:36px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;outline:none}
+.form-select{width:100%;background:#fff;border:.5px solid rgba(0,0,0,.12);border-radius:9px;padding:0 12px;height:36px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;outline:none}
+.save-btn-terra{display:block;width:calc(100% - 28px);margin:4px 14px 0;background:#C4694A;color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif}
+.profile-header{background:#22303E;padding:12px 20px 14px;display:flex;align-items:center;gap:12px;width:100%}
+.pro-name{color:#fff;font-size:15px;font-weight:600}
+.pro-email{color:rgba(255,255,255,.55);font-size:12px;margin-top:2px}
+.pro-badge{background:rgba(59,109,17,.3);color:#9FE1CB;font-size:11px;padding:2px 7px;border-radius:20px;display:inline-block;margin-top:3px}
+.section-card{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:hidden;width:calc(100% - 28px)}
+.section-toggle{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.section-toggle-left{display:flex;align-items:center;gap:10px}
+.section-toggle-title{font-size:13px;font-weight:600;color:#22303E}
+.section-toggle-sub{font-size:11px;color:#8C8478;margin-top:2px}
+.section-edit-label{font-size:12px;font-weight:500;color:#C4694A}
+.section-body{display:none;border-top:.5px solid rgba(0,0,0,.07);padding:12px 14px}
+.section-body.open{display:block}
+.field-row{margin-bottom:10px}
+.field-label{font-size:11px;font-weight:500;color:#8C8478;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.field-input{width:100%;background:#F7F4EF;border:.5px solid rgba(0,0,0,.12);border-radius:7px;padding:0 10px;height:34px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;outline:none}
+.field-row-inline{display:flex;gap:8px}
+.field-row-inline .field-row{flex:1;margin-bottom:0}
+.save-row{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:.5px solid rgba(0,0,0,.07)}
+.save-btn{flex:1;background:#C4694A;color:#fff;border:none;border-radius:7px;padding:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif}
+.cancel-btn{background:#F7F4EF;border:.5px solid rgba(0,0,0,.12);border-radius:7px;padding:8px 12px;font-size:13px;font-weight:500;color:#3D4B5C;cursor:pointer;font-family:-apple-system,sans-serif}
+.info-row{padding:9px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.info-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.info-label{font-size:13px;color:#8C8478}
+.info-val{font-size:13px;color:#22303E;font-weight:500}
+.contact-header{padding:11px 14px;display:flex;align-items:center;gap:10px;border-bottom:.5px solid rgba(0,0,0,.06)}
+.contact-av{width:38px;height:38px;border-radius:50%;background:#3D4B5C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
+.doc-row{padding:9px 14px;display:flex;align-items:center;gap:10px}
+.doc-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.pdf-badge{background:#FAECE7;color:#993C1D;font-size:10px;font-weight:600;padding:2px 5px;border-radius:4px;flex-shrink:0}
+.doc-info{flex:1}
+.doc-name{font-size:13px;font-weight:500;color:#22303E}
+.doc-meta{font-size:11px;color:#8C8478;margin-top:1px}
+.doc-btn{background:#F7F4EF;border:.5px solid rgba(0,0,0,.12);border-radius:6px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#3D4B5C;font-size:14px}
+.sub-free{background:#EAF3DE;border-radius:12px;margin:0 14px 10px;border:.5px solid rgba(59,109,17,.2);padding:12px 14px;width:calc(100% - 28px)}
+.acct-row{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.acct-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.profile-subview{display:none;width:100%;padding-bottom:20px}
+.profile-subview.active{display:block}
+.phd-back{background:#22303E;padding:10px 20px 12px;width:100%}
+.qr-row{padding:12px 14px;display:flex;align-items:center;gap:12px}
+.qr-box{width:48px;height:48px;background:#22303E;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:700;color:#fff;text-align:center}
+.qr-info{flex:1}
+.qr-label{font-size:11px;color:#8C8478;margin-bottom:2px}
+.qr-id{font-size:13px;font-weight:600;color:#22303E;font-family:monospace}
+.qr-btn{background:#F7F4EF;border:.5px solid rgba(0,0,0,.12);border-radius:7px;padding:4px 9px;font-size:11px;font-weight:500;color:#3D4B5C;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:6px;display:inline-block}
+.qr-card{background:#22303E;border-radius:12px;margin:8px 14px 10px;padding:14px;width:calc(100% - 28px)}
+.qr-card-title{color:#fff;font-size:14px;font-weight:600;margin-bottom:4px}
+.qr-card-sub{color:rgba(255,255,255,.55);font-size:12px;margin-bottom:12px;line-height:1.5}
+.qr-share-btn{background:rgba(255,255,255,.12);border:.5px solid rgba(255,255,255,.2);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:500;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif}
+.member-row{padding:10px 14px;display:flex;align-items:center;gap:10px}
+.member-row:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.mem-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
+.mem-info{flex:1}
+.mem-name{font-size:13px;font-weight:600;color:#22303E}
+.mem-role{font-size:11px;color:#8C8478;margin-top:1px}
+.mem-status{font-size:11px;font-weight:500;padding:2px 7px;border-radius:20px;flex-shrink:0}
+.status-active{background:#EAF3DE;color:#3B6D11}
+.status-pending{background:#FFF3E0;color:#854F0B}
+.prop-selector{background:#fff;border-radius:12px;margin:0 14px 8px;border:.5px solid rgba(0,0,0,.08);overflow:visible;width:calc(100% - 28px)}
+.prop-trigger{padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;width:100%;background:transparent;border:none;font-family:-apple-system,sans-serif;text-align:left}
+.pt-icon{width:34px;height:34px;border-radius:9px;background:#FFF7F5;border:1.5px solid #C4694A;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.pt-info{flex:1;min-width:0}
+.pt-curr-lbl{font-size:10px;font-weight:600;color:#8C8478;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1px}
+.pt-curr-name{font-size:13px;font-weight:600;color:#22303E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pt-curr-meta{font-size:11px;color:#8C8478;margin-top:1px}
+.pt-badge{font-size:10px;font-weight:600;color:#C4694A;background:#FFF7F5;border:.5px solid rgba(196,105,74,.2);padding:2px 7px;border-radius:20px}
+.prop-panel{border-top:.5px solid rgba(0,0,0,.06);max-height:0;overflow:hidden;transition:max-height .25s ease}
+.prop-panel.open{max-height:350px}
+.prop-option{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border-top:.5px solid rgba(0,0,0,.06)}
+.po-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.po-info{flex:1;min-width:0}
+.po-name{font-size:13px;font-weight:600;color:#22303E}
+.po-meta{font-size:11px;color:#8C8478;margin-top:1px}
+.prop-add-row{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border-top:.5px solid rgba(0,0,0,.06);background:#F7F4EF}
+.pa-icon{width:30px;height:30px;border-radius:8px;background:#fff;border:1px dashed rgba(61,75,92,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:#8C8478}
+.prop-add-form{border-top:.5px solid rgba(0,0,0,.06);padding:12px 14px;background:#FDFCFA}
+.af-label{font-size:11px;font-weight:600;color:#8C8478;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;margin-top:9px;display:block}
+.af-label:first-child{margin-top:0}
+.af-input{width:100%;background:#fff;border:.5px solid rgba(0,0,0,.15);border-radius:7px;padding:0 10px;height:34px;font-size:13px;color:#22303E;outline:none;font-family:-apple-system,sans-serif}
+.af-type-row{display:flex;gap:7px;margin-top:2px}
+.af-type-btn{flex:1;background:#fff;border:.5px solid rgba(0,0,0,.12);border-radius:7px;padding:6px 4px;font-size:11px;font-weight:500;color:#3D4B5C;cursor:pointer;font-family:-apple-system,sans-serif;text-align:center}
+.af-type-btn.sel{background:#FFF7F5;border:1.5px solid #C4694A;color:#C4694A;font-weight:600}
+.af-save-btn{width:100%;background:#C4694A;border:none;border-radius:9px;padding:9px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:10px}
+.af-cancel-btn{width:100%;background:transparent;border:none;padding:6px;font-size:12px;color:#8C8478;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="hw-label">
+  <span class="hw-label-title">Hearthward</span>
+  <span class="hw-label-dot"></span>
+  <span class="hw-label-sub">Interactive prototype</span>
+</div>
+<div class="phone">
+  <div class="status"><span>9:41</span><span>Apr 29</span></div>
+  <div class="scroll">
+    <!-- HOME TAB -->
+    <div class="tab active" id="tab-home">
+      <div class="phd" style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div><div style="color:#fff;font-size:18px;font-weight:600">Good morning, Sarah</div><div style="color:rgba(255,255,255,.55);font-size:12px;margin-top:2px">Tuesday, April 29</div></div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-card-label"><span>YOUR AGENT</span></div>
+        <div class="agent-card-body">
+          <div class="agent-row"><div class="avatar agent-av">JM</div><div><div class="agent-name">James Monroe</div><div class="agent-meta">Monroe Realty Group</div></div></div>
+          <div class="btn-row"><button class="pill-btn-primary">Call</button><button class="pill-btn">Message</button><button class="pill-btn">Listings</button></div>
+        </div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="card-pad" style="padding-bottom:8px">
+          <div class="val-label">Estimated home value</div>
+          <div class="val-hero-row">
+            <div><div class="val-big">$487,200</div><div class="val-up">&#8593; +2.6% this year</div></div>
+            <svg width="55" height="34" viewBox="0 0 64 40"><polyline points="0,36 11,30 22,32 32,22 43,16 54,9 64,4" fill="none" stroke="#C4694A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="64" cy="4" r="3" fill="#C4694A"/></svg>
+          </div>
+        </div>
+        <div class="val-stat-strip">
+          <div class="val-stat"><div class="val-stat-label">Equity</div><div class="val-stat-val equity">$187,200</div></div>
+          <div class="val-stat"><div class="val-stat-label">Balance</div><div class="val-stat-val">$300,000</div></div>
+          <div class="val-stat"><div class="val-stat-label">Rate</div><div class="val-stat-val">4.875%</div></div>
+        </div>
+      </div>
+      <div class="sl">From your agent</div>
+      <div class="agent-post">
+        <div class="avatar" style="width:30px;height:30px;font-size:11px;flex-shrink:0">JM</div>
+        <div><div class="post-text">Spring market update &#8212; Inventory up 18% vs last year. Your home is sitting at ~$487k. Great time to check your equity.</div><div class="post-time">2 days ago</div></div>
+      </div>
+      <div class="sl">Coming up</div>
+      <div class="card">
+        <div class="task-row"><div class="task-circle"></div><div class="task-info"><div class="task-name">Replace HVAC air filter</div><div class="task-due">Due May 1</div></div><span class="badge bo">Overdue</span></div>
+        <div class="task-row"><div class="task-circle"></div><div class="task-info"><div class="task-name">Test smoke detectors</div><div class="task-due">Due May 15</div></div><span class="badge bs">Soon</span></div>
+        <div class="task-row"><div class="task-circle"></div><div class="task-info"><div class="task-name">Flush water heater</div><div class="task-due">Due Jun 3</div></div><span class="badge bg">On track</span></div>
+      </div>
+    </div>
+
+    <!-- MAINTENANCE TAB -->
+    <div class="tab" id="tab-maint">
+      <div class="phl"><div class="phl-title">Maintenance</div></div>
+      <div class="inner-tabs">
+        <button class="inner-tab active" id="itab-tasks" onclick="switchInner('tasks')">Tasks</button>
+        <button class="inner-tab" id="itab-apps" onclick="switchInner('apps')">Appliances</button>
+      </div>
+      <div id="view-tasks">
+        <div class="period-tabs">
+          <button class="period-tab active" id="ptab-m" onclick="switchPeriod('m')">This Month</button>
+          <button class="period-tab" id="ptab-n" onclick="switchPeriod('n')">Next 3 Months</button>
+        </div>
+        <div id="period-m">
+          <div class="group-label">Overdue (2)</div>
+          <div class="task-card overdue"><div class="task-top"><div class="task-title">Replace HVAC Air Filter</div><span class="badge bo">Overdue</span></div><div class="task-desc">Replace 20x25x1 MERV-11 filters. Check both return air vents.</div><div class="task-meta"><span class="meta-tag">Apr 15</span><span class="meta-tag">HVAC</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Every 90 days</span></div></div>
+          <div class="task-card overdue"><div class="task-top"><div class="task-title">Clean Gutters</div><span class="badge bo">Overdue</span></div><div class="task-desc">Remove debris from gutters and downspouts. Check for sagging.</div><div class="task-meta"><span class="meta-tag">Apr 1</span><span class="meta-tag">Exterior</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Twice yearly</span></div></div>
+          <div class="group-label">Due this month (2)</div>
+          <div class="task-card"><div class="task-top"><div class="task-title">Test Smoke Detectors</div><span class="badge bs">Due May 15</span></div><div class="task-desc">Press test button on all 4 units. Replace batteries if alarm is weak.</div><div class="task-meta"><span class="meta-tag">May 15</span><span class="meta-tag">Home Safety</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Monthly</span></div></div>
+          <div class="task-card"><div class="task-top"><div class="task-title">Check Water Pressure</div><span class="badge bs">Due May 28</span></div><div class="task-desc">Test household water pressure. Ideal range 40-80 psi.</div><div class="task-meta"><span class="meta-tag">May 28</span><span class="meta-tag">Plumbing</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Every 6 months</span></div></div>
+        </div>
+        <div id="period-n" style="display:none">
+          <div class="group-label">June</div>
+          <div class="task-card"><div class="task-top"><div class="task-title">Flush Water Heater</div><span class="badge bg">Due Jun 3</span></div><div class="task-desc">Drain sediment from tank to improve efficiency.</div><div class="task-meta"><span class="meta-tag">Jun 3</span><span class="meta-tag">Plumbing</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Annual</span></div></div>
+          <div class="task-card"><div class="task-top"><div class="task-title">Inspect Sprinkler System</div><span class="badge bg">Due Jun 15</span></div><div class="task-desc">Check heads for blockage, test all zones.</div><div class="task-meta"><span class="meta-tag">Jun 15</span><span class="meta-tag">Exterior</span></div><div class="task-footer"><button class="mark-done-btn">&#10003; Mark done</button><span class="freq-label">Annual</span></div></div>
+        </div>
+      </div>
+      <div id="view-apps" style="display:none">
+        <div class="app-det-view" id="app-ac"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Conditioning</div><div class="adet-sub">Service annually before summer</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Carrier" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. 24ACC636" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="e.g. 2018" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, technician notes..."></textarea></div><button class="asave">Save appliance</button></div>
+        <div class="app-det-view" id="app-furnace"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Furnace</div><div class="adet-sub">Carrier &#183; 59TP6 &#183; 2019</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Carrier" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="59TP6060V17" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2019" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace furnace filter</div><div class="amfreq">Every 90 days</div></div></div><div class="amrow"><div><div class="amname">Annual tune-up</div><div class="amfreq">Every fall before heating season</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta">Tune-up done Oct 2023. Filter replaced Jan 2024.</textarea></div><button class="asave" style="background:#3D4B5C">Save changes</button></div>
+        <div class="app-det-view" id="app-filter"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Filters</div><div class="adet-sub">Replace every 90 days</div></div><div class="asl">Filter details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="3M Filtrete" type="text"></div><div class="afrow"><span class="aflbl">Size</span><input class="afinp" value="20 x 25 x 1 in." type="text"></div><div class="afrow"><span class="aflbl">MERV Rating</span><input class="afinp" value="MERV 11" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Replacement dates..."></textarea></div><button class="asave">Save</button></div>
+        <div class="app-det-view" id="app-waterheater"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Water &amp; Plumbing</button></div><div class="adet-hdr"><div class="adet-title">Water Heater</div><div class="adet-sub">Flush annually</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Rheem" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. XE40T12EC45U0" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="Decoded from serial #" type="text"></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Flush sediment from tank</div><div class="amfreq">Annually &#8212; extends life</div></div></div><div class="amrow"><div><div class="amname">Test pressure relief valve</div><div class="amfreq">Annually &#8212; safety critical</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Last flush, plumber notes..."></textarea></div><button class="asave">Save appliance</button></div>
+        <div class="app-det-view" id="app-roof"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Roof</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Asphalt shingle" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2008" type="text"></div><div class="afrow"><span class="aflbl">Warranty Expiry</span><input class="afinp" placeholder="e.g. 2033" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Inspection notes, repair history..."></textarea></div><button class="asave">Save roof details</button></div>
+        <div class="app-det-view" id="app-gutters"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Gutters &amp; Downspouts</div><div class="adet-sub">Clean spring &amp; fall</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Aluminum" type="text"></div><div class="afrow"><span class="aflbl">Last Cleaned</span><input class="afinp" placeholder="e.g. Oct 2024" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, contractor contacts..."></textarea></div><button class="asave">Save gutter details</button></div>
+        <div class="app-det-view" id="app-windows"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Windows &amp; Caulking</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Window Type</span><input class="afinp" placeholder="e.g. Double-pane vinyl" type="text"></div><div class="afrow"><span class="aflbl">Last Caulked</span><input class="afinp" placeholder="e.g. Sep 2023" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Failed seals, foggy panes, repairs..."></textarea></div><button class="asave">Save window details</button></div>
+        <div class="app-det-view" id="app-smoke"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Smoke Detectors</div><div class="adet-sub">Nest Protect &#183; 2019 &#183; Test monthly</div></div><div style="margin:8px 14px 0;width:calc(100% - 28px);background:#FAECE7;border-radius:10px;padding:10px 12px"><div style="font-size:12px;font-weight:600;color:#993C1D">Battery status unknown</div><div style="font-size:11px;color:#993C1D;opacity:.8;margin-top:1px">Last battery change not recorded</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" value="Nest Protect Gen 2" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" value="2019" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" value="2029 (10-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Battery history, unit locations..."></textarea></div><button class="asave">Save detector details</button></div>
+        <div class="app-det-view" id="app-co"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">CO Detectors</div><div class="adet-sub">Test monthly</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" placeholder="e.g. Kidde KN-COPP-3" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2020" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" placeholder="e.g. 2027 (7-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Unit locations, past alarms..."></textarea></div><button class="asave">Save CO detector details</button></div>
+        <div class="app-det-view" id="app-extinguisher"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Fire Extinguisher</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Rating</span><input class="afinp" placeholder="e.g. 2-A:10-B:C" type="text"></div><div class="afrow"><span class="aflbl">Last Inspected</span><input class="afinp" placeholder="e.g. Jan 2025" type="text"></div><div class="afrow"><span class="aflbl">Location</span><input class="afinp" placeholder="e.g. Kitchen, Garage" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Location of each unit, service history..."></textarea></div><button class="asave">Save extinguisher details</button></div>
+        <div class="app-det-view" id="app-fridge"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Refrigerator</div><div class="adet-sub">Samsung RF28R &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Samsung" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="RF28R7351SR" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Water Filter</span><input class="afinp" value="DA29-00020B" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace water filter</div><div class="amfreq">Every 6 months</div></div></div><div class="amrow"><div><div class="amname">Vacuum condenser coils</div><div class="amfreq">Twice yearly</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Filter change dates, service calls..."></textarea></div><button class="asave" style="background:#3D4B5C">Save changes</button></div>
+        <div class="app-det-view" id="app-washerdryer"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Washer / Dryer</div><div class="adet-sub">LG &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="LG" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model # (Washer)</span><input class="afinp" value="WT7300CW" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2021" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Clean lint trap</div><div class="amfreq">After every dryer load</div></div></div><div class="amrow"><div><div class="amname">Clean dryer vent duct</div><div class="amfreq">Annually &#8212; reduces fire risk</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Vent cleaning dates, service calls..."></textarea></div><button class="asave">Save changes</button></div>
+        <div id="app-list-view">
+          <div class="app-cat-hdr"><div class="app-cat-icon aci-gr">AC</div><div><div class="app-cat-title">HVAC &amp; Climate</div><div class="app-cat-sub">Filter every 90 days &#183; Annual tune-up</div></div></div>
+          <div class="app-list">
+            <div class="app-row" onclick="openApp('ac')"><div class="app-icon-wrap">AC</div><div class="app-info"><div class="app-name">Air Conditioning</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual</span><div class="dot empty"></div></div></div>
+            <div class="app-row" onclick="openApp('furnace')"><div class="app-icon-wrap">FN</div><div class="app-info"><div class="app-name">Furnace</div><div class="app-sub">Carrier &#183; 59TP6 &#183; 2019</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual</span><div class="dot green"></div></div></div>
+            <div class="app-row" onclick="openApp('filter')"><div class="app-icon-wrap">AF</div><div class="app-info"><div class="app-name">Air Filters</div><div class="app-sub">3M Filtrete MERV-11</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">90 days</span><div class="dot orange"></div></div></div>
+          </div>
+          <div class="app-cat-hdr"><div class="app-cat-icon aci-bl">WP</div><div><div class="app-cat-title">Water &amp; Plumbing</div><div class="app-cat-sub">Flush heater annually</div></div></div>
+          <div class="app-list">
+            <div class="app-row" onclick="openApp('waterheater')"><div class="app-icon-wrap">WH</div><div class="app-info"><div class="app-name">Water Heater</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual flush</span><div class="dot empty"></div></div></div>
+          </div>
+          <div class="app-cat-hdr"><div class="app-cat-icon aci-am">SE</div><div><div class="app-cat-title">Structure &amp; Exterior</div><div class="app-cat-sub">Roof annually &#183; Gutters 2x/year</div></div></div>
+          <div class="app-list">
+            <div class="app-row" onclick="openApp('roof')"><div class="app-icon-wrap">RF</div><div class="app-info"><div class="app-name">Roof</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual</span><div class="dot empty"></div></div></div>
+            <div class="app-row" onclick="openApp('gutters')"><div class="app-icon-wrap">GT</div><div class="app-info"><div class="app-name">Gutters &amp; Downspouts</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">2x/year</span><div class="dot empty"></div></div></div>
+            <div class="app-row" onclick="openApp('windows')"><div class="app-icon-wrap">WN</div><div class="app-info"><div class="app-name">Windows &amp; Caulking</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual</span><div class="dot empty"></div></div></div>
+          </div>
+          <div class="app-cat-hdr"><div class="app-cat-icon aci-re">HS</div><div><div class="app-cat-title">Home Safety</div><div class="app-cat-sub">Test detectors monthly</div></div></div>
+          <div class="app-list">
+            <div class="app-row" onclick="openApp('smoke')"><div class="app-icon-wrap">SM</div><div class="app-info"><div class="app-name">Smoke Detectors</div><div class="app-sub">Nest Protect &#183; 2019</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Monthly</span><div class="dot orange"></div></div></div>
+            <div class="app-row" onclick="openApp('co')"><div class="app-icon-wrap">CO</div><div class="app-info"><div class="app-name">CO Detectors</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Monthly</span><div class="dot empty"></div></div></div>
+            <div class="app-row" onclick="openApp('extinguisher')"><div class="app-icon-wrap">FE</div><div class="app-info"><div class="app-name">Fire Extinguisher</div><div class="app-sub">Tap to add details</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Annual</span><div class="dot empty"></div></div></div>
+          </div>
+          <div class="app-cat-hdr"><div class="app-cat-icon aci-pu">AP</div><div><div class="app-cat-title">Appliances</div><div class="app-cat-sub">Service annually</div></div></div>
+          <div class="app-list">
+            <div class="app-row" onclick="openApp('fridge')"><div class="app-icon-wrap">FR</div><div class="app-info"><div class="app-name">Refrigerator</div><div class="app-sub">Samsung &#183; RF28R &#183; 2021</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Coils 2x/yr</span><div class="dot green"></div></div></div>
+            <div class="app-row" onclick="openApp('washerdryer')"><div class="app-icon-wrap">WD</div><div class="app-info"><div class="app-name">Washer / Dryer</div><div class="app-sub">LG &#183; 2021</div></div><div class="app-right"><span style="font-size:10px;background:#F7F4EF;color:#3D4B5C;border-radius:5px;padding:2px 6px;font-weight:500;margin-right:3px">Monthly clean</span><div class="dot green"></div></div></div>
+          </div>
+          <button class="add-btn-dashed" style="margin-top:8px">+ Add custom appliance</button>
+        </div>
+      </div>
+    </div>
+    <!-- VALUE TAB -->
+    <div class="tab" id="tab-value">
+      <div class="phd"><div class="phd-title">Home Value</div><div class="phd-sub">123 Maple Street &#183; Updated today</div></div>
+      <div class="s-tabs">
+        <button class="s-tab active" id="stab-ov" onclick="switchSection('ov')">Overview</button>
+        <button class="s-tab" id="stab-eq" onclick="switchSection('eq')">Equity</button>
+        <button class="s-tab" id="stab-mo" onclick="switchSection('mo')">Mortgage</button>
+        <button class="s-tab" id="stab-boost" onclick="switchSection('boost')">Increase Value</button>
+      </div>
+      <div id="section-ov">
+        <div class="card" style="margin-top:2px">
+          <div class="card-pad" style="padding-bottom:8px"><div class="val-label">Estimated value</div><div class="val-big">$487,200</div><div class="val-up">&#8593; $12,400 in 12 months</div></div>
+          <div class="chart-wrap"><div class="chart-bars"><div class="bar" style="height:35%"></div><div class="bar" style="height:42%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:62%"></div><div class="bar" style="height:78%"></div><div class="bar hi" style="height:100%"></div></div><div class="chart-labels"><span class="chart-lbl">2020</span><span class="chart-lbl">2025</span></div></div>
+        </div>
+        <div class="equity-row">
+          <div class="equity-cell"><div class="equity-cell-label">Value</div><div class="equity-cell-val">$487,200</div></div>
+          <div class="equity-cell"><div class="equity-cell-label">Balance</div><div class="equity-cell-val">$300,000</div></div>
+          <div class="equity-cell highlighted"><div class="equity-cell-label">Equity</div><div class="equity-cell-val">$187,200</div></div>
+        </div>
+        <div class="sl">Nearby sold comps</div>
+        <div class="card"><div class="comp-row"><div><div class="comp-addr">118 Maple St &#183; 3bd/2ba</div><div class="comp-detail">Sold Mar 2025</div></div><div class="comp-price">$478,500</div></div><div class="comp-row"><div><div class="comp-addr">205 Oak Ave &#183; 3bd/2ba</div><div class="comp-detail">Sold Feb 2025</div></div><div class="comp-price">$495,000</div></div></div>
+      </div>
+      <div id="section-eq" style="display:none">
+        <div class="card" style="margin-top:2px">
+          <div class="equity-ring-wrap">
+            <div class="equity-ring">
+              <svg width="100" height="100" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#EDE9E2" stroke-width="12"/><circle cx="60" cy="60" r="50" fill="none" stroke="#C4694A" stroke-width="12" stroke-dasharray="314" id="equity-arc" stroke-dashoffset="193" stroke-linecap="round"/></svg>
+              <div class="equity-ring-text"><div class="equity-ring-amount" id="equity-display">$187,200</div><div class="equity-ring-label">Est. Equity</div></div>
+            </div>
+          </div>
+          <div class="calc-field"><div class="calc-label"><span>Home Sale Price</span><span class="val-display" id="sale-price-display">$487,200</span></div><input type="range" id="sale-price" min="200000" max="1500000" step="1000" value="487200" oninput="updateEquity()"></div>
+          <div class="calc-field"><div class="calc-label"><span>Loan Balance</span><span class="val-display" id="loan-balance-display">$300,000</span></div><input type="range" id="loan-balance" min="0" max="1200000" step="1000" value="300000" oninput="updateEquity()"></div>
+          <div class="calc-field" style="padding-bottom:0"><div class="calc-label"><span>Selling Costs</span><span class="val-display" id="selling-costs-display">$29,232</span></div><input type="range" id="selling-costs-pct" min="0" max="10" step="0.5" value="6" oninput="updateEquity()"></div>
+        </div>
+        <div class="equity-breakdown"><div class="eq-cell"><div class="eq-cell-label">Sale Price</div><div class="eq-cell-val" id="eq-sale">$487,200</div></div><div class="eq-cell"><div class="eq-cell-label">Loan Payoff</div><div class="eq-cell-val" id="eq-loan">$300,000</div></div><div class="eq-cell"><div class="eq-cell-label">Net Proceeds</div><div class="eq-cell-val green" id="eq-net">$157,968</div></div></div>
+        <div style="margin:0 14px 10px;background:#EAF3DE;border-radius:9px;padding:9px 12px;font-size:12px;color:#3B6D11;line-height:1.5;width:calc(100% - 28px)">These proceeds could cover a down payment on your next home.</div>
+      </div>
+      <div id="section-mo" style="display:none">
+        <div class="mort-result"><div class="mort-result-label">Estimated monthly payment</div><div class="mort-result-amount" id="mort-payment">$2,548</div><div class="mort-result-sub" id="mort-sub">30-yr fixed &#183; $389,760 loan</div><div class="mort-breakdown"><div class="mort-cell"><div class="mort-cell-label">Principal &amp; Interest</div><div class="mort-cell-val" id="mort-pi">$2,258</div></div><div class="mort-cell"><div class="mort-cell-label">Tax (est.)</div><div class="mort-cell-val" id="mort-tax">$203</div></div><div class="mort-cell"><div class="mort-cell-label">Insurance</div><div class="mort-cell-val" id="mort-ins">$87</div></div></div></div>
+        <div class="divider-label">Home details</div>
+        <div class="input-row"><div class="input-label">Home price</div><div class="input-with-prefix"><span class="input-prefix">$</span><input type="number" id="m-price" value="487200" oninput="calcMortgage()"></div></div>
+        <div class="input-row"><div class="input-label">Down payment</div><div class="input-with-prefix"><span class="input-prefix">$</span><input type="number" id="m-down" value="97440" oninput="calcMortgage()"></div></div>
+        <div class="input-row"><div class="input-label">Interest rate</div><div class="calc-label" style="margin-bottom:5px"><span style="font-size:11px;color:#8C8478">Drag to adjust</span><span class="val-display" id="rate-display">6.5%</span></div><input type="range" id="m-rate" min="3" max="12" step="0.125" value="6.5" oninput="calcMortgage();document.getElementById('rate-display').textContent=parseFloat(this.value).toFixed(3).replace(/\.?0+$/,'')+'%'"></div>
+        <div class="input-row"><div class="input-label">Loan term</div><div class="seg-control"><button class="seg-btn" onclick="setTerm(10,this)">10 yr</button><button class="seg-btn" onclick="setTerm(15,this)">15 yr</button><button class="seg-btn" onclick="setTerm(20,this)">20 yr</button><button class="seg-btn active" onclick="setTerm(30,this)">30 yr</button></div></div>
+      </div>
+      <div id="section-boost" style="display:none">
+        <div class="boost-intro"><div class="boost-intro-title">Projects that build equity</div><div class="boost-intro-sub">Ranked by ROI for your home at $487,200.</div></div>
+        <div class="cat-filter"><button class="cf-btn sel">All</button><button class="cf-btn">Exterior</button><button class="cf-btn">Kitchen</button><button class="cf-btn">Bath</button></div>
+        <div class="project-card"><div class="project-top"><div class="project-icon-wrap ic-green">G</div><div class="project-info"><div class="project-name">Garage door replacement</div><div class="project-cat">Exterior &#183; Curb appeal</div></div><div class="roi-badge">268% ROI</div></div><div class="project-desc">The #1 ROI project nationally. New insulated steel door improves curb appeal and energy efficiency.</div></div>
+        <div style="background:#F7F4EF;border-radius:9px;margin:0 14px 8px;padding:9px 12px;font-size:12px;color:#3D4B5C;line-height:1.5;width:calc(100% - 28px)"><strong>James says:</strong> "Buyers notice it before they're out of the car. Best bang-for-buck upgrade you can make."</div>
+        <div class="project-card"><div class="project-top"><div class="project-icon-wrap ic-amber">K</div><div class="project-info"><div class="project-name">Minor kitchen refresh</div><div class="project-cat">Kitchen &#183; Interior</div></div><div class="roi-badge">113% ROI</div></div><div class="project-desc">New cabinet faces, quartz countertops, tile backsplash. Cosmetic upgrades win every time.</div></div>
+      </div>
+    </div>
+
+    <!-- PARTNERS TAB -->
+    <div class="tab" id="tab-partners">
+      <div class="pview active" id="pv-list">
+        <div class="phd"><div class="phd-title">Trusted Partners</div><div class="phd-sub">Curated by James Monroe</div></div>
+        <div class="fr"><button class="fb sel">All</button><button class="fb">HVAC</button><button class="fb">Plumber</button><button class="fb">Electric</button></div>
+        <div class="sl">HVAC</div>
+        <div class="pcard">
+          <div class="prow" onclick="showPartner('arctic')"><div class="pavatar">AC</div><div class="pinfo"><div class="pname">Arctic Comfort HVAC</div><div class="pmeta">Licensed &#183; Insured &#183; 24/7</div><div class="pstars">&#9733;&#9733;&#9733;&#9733;&#9733; <span style="color:#8C8478">4.9 (214)</span></div></div><span class="disc-badge">10% off</span></div>
+          <div class="prow" onclick="showPartner('flowpro')"><div class="pavatar">FP</div><div class="pinfo"><div class="pname">Flow Pro Plumbing</div><div class="pmeta">Licensed &#183; Master plumber</div><div class="pstars">&#9733;&#9733;&#9733;&#9733;&#9733; <span style="color:#8C8478">4.9 (158)</span></div></div><span class="disc-badge">15% off</span></div>
+        </div>
+        <div class="sl">My partners</div>
+        <div class="pcard"><div class="prow"><div class="pavatar own">GL</div><div class="pinfo"><div class="pname">Green Leaf Landscaping</div><div class="pmeta">Landscaper &#183; Added by me</div></div></div></div>
+        <button class="add-btn-dashed" onclick="showPartner('addform')" style="margin-top:4px">+ Add your own partner</button>
+      </div>
+      <div class="pview" id="pv-arctic">
+        <div class="phd"><button class="back-btn" onclick="showPartner('list')">&#8592; Back</button><div style="display:flex;align-items:center;gap:12px"><div class="detail-avatar">AC</div><div><div style="color:#fff;font-size:16px;font-weight:600">Arctic Comfort HVAC</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &#183; 214 reviews</div></div></div></div>
+        <div class="discount-card" style="margin-top:8px"><div><div class="discount-title">10% partner discount</div><div style="font-size:11px;color:#3B6D11;opacity:.8;margin-top:2px">Say "Hearthward" when booking</div></div></div>
+        <div class="action-row"><button class="action-btn">Call</button><button class="action-btn">Website</button></div>
+        <div class="bio-card"><div class="bio-label">About</div><div class="bio-text">Family-owned HVAC since 2004. EPA 608 certified. All work guaranteed 12 months. 24/7 emergencies.</div></div>
+        <div class="endorse-card"><div class="endorse-top"><div class="endorse-av">JM</div><div><div class="endorse-name">James Monroe</div></div></div><div class="endorse-text">"I've referred Arctic Comfort to over 40 clients. They show up on time, price fairly, and never upsell."</div></div>
+      </div>
+      <div class="pview" id="pv-flowpro">
+        <div class="phd"><button class="back-btn" onclick="showPartner('list')">&#8592; Back</button><div style="display:flex;align-items:center;gap:12px"><div class="detail-avatar" style="background:#185FA5">FP</div><div><div style="color:#fff;font-size:16px;font-weight:600">Flow Pro Plumbing</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &#183; 158 reviews</div></div></div></div>
+        <div class="discount-card" style="margin-top:8px"><div><div class="discount-title">15% partner discount</div><div style="font-size:11px;color:#3B6D11;opacity:.8;margin-top:2px">Say "Hearthward" when booking</div></div></div>
+        <div class="action-row"><button class="action-btn">Call</button><button class="action-btn">Website</button></div>
+        <div class="bio-card"><div class="bio-label">About</div><div class="bio-text">Licensed master plumbers, 18 years experience. Upfront pricing.</div></div>
+      </div>
+      <div class="pview" id="pv-addform">
+        <div class="phd"><button class="back-btn" onclick="showPartner('list')">&#8592; Back</button><div style="color:#fff;font-size:17px;font-weight:600">Add your own partner</div></div>
+        <div style="height:10px"></div>
+        <div class="form-field"><div class="form-label">Business name</div><input class="form-input" type="text" placeholder="e.g. Tony's Landscaping"></div>
+        <div class="form-field"><div class="form-label">Category</div><select class="form-select"><option>HVAC</option><option>Plumber</option><option>Electrician</option><option>Landscaper</option><option>Roofer</option><option>Other</option></select></div>
+        <div class="form-field"><div class="form-label">Phone number</div><input class="form-input" type="tel" placeholder="(801) 555-0000"></div>
+        <div class="form-field"><div class="form-label">Your notes</div><textarea class="form-input" style="height:65px;padding-top:10px;resize:none" placeholder="Why do you recommend them?"></textarea></div>
+        <button class="save-btn-terra">Save partner</button>
+      </div>
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div class="tab" id="tab-profile">
+      <div class="profile-subview active" id="psv-main">
+        <div class="profile-header">
+          <div class="avatar terra" style="width:46px;height:46px;font-size:14px;border:2px solid rgba(255,255,255,.2)">SC</div>
+          <div><div class="pro-name">Sarah Chen</div><div class="pro-email">sarah@email.com</div><div class="pro-badge">Covered by agent &#183; Free</div></div>
+        </div>
+        <div class="sl" style="padding-top:6px">Active property</div>
+        <div class="prop-selector">
+          <button class="prop-trigger" id="prop-trigger" onclick="togglePropDropdown()">
+            <div class="pt-icon">&#8962;</div>
+            <div class="pt-info"><div class="pt-curr-lbl">Currently viewing</div><div class="pt-curr-name" id="prop-trigger-name">123 Maple Street</div><div class="pt-curr-meta" id="prop-trigger-meta">Salt Lake City, UT &#183; Primary</div></div>
+            <div style="display:flex;align-items:center;gap:6px;flex-shrink:0"><span class="pt-badge">Active</span><span id="prop-chevron" style="color:#C4694A;font-size:13px;transition:transform .2s">&#8964;</span></div>
+          </button>
+          <div class="prop-panel" id="prop-panel">
+            <div id="prop-options"></div>
+            <div class="prop-add-row" id="prop-add-row" onclick="showPropAddForm()">
+              <div class="pa-icon">+</div>
+              <div class="po-info"><div class="po-name" style="color:#3D4B5C">Add a property</div><div class="po-meta">Track a new home, rental, or vacation property</div></div>
+            </div>
+            <div class="prop-add-form" id="prop-add-form" style="display:none">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div style="font-size:13px;font-weight:600;color:#22303E">Add a property</div><button onclick="hidePropAddForm()" style="background:none;border:none;cursor:pointer;font-size:15px;color:#8C8478">&#10005;</button></div>
+              <span class="af-label">Street address</span>
+              <input class="af-input" id="new-prop-addr" type="text" placeholder="456 Oak Avenue">
+              <span class="af-label">City, State</span>
+              <input class="af-input" id="new-prop-city" type="text" placeholder="Park City, UT" style="margin-top:5px">
+              <span class="af-label">Property type</span>
+              <div class="af-type-row">
+                <button class="af-type-btn sel" id="af-type-primary" onclick="selPropType('Primary',this)">Primary</button>
+                <button class="af-type-btn" id="af-type-rental" onclick="selPropType('Rental',this)">Rental</button>
+                <button class="af-type-btn" id="af-type-vacation" onclick="selPropType('Vacation',this)">Vacation</button>
+              </div>
+              <button class="af-save-btn" onclick="saveNewProp()">Add property</button>
+              <button class="af-cancel-btn" onclick="hidePropAddForm()">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="sl">Home details</div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('home')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Home details</div><div class="section-toggle-sub">123 Maple St &#183; 1,892 sqft &#183; 3bd/2ba</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="home-edit-label">Edit</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="home-body">
+            <div class="field-row"><div class="field-label">Street address</div><input class="field-input" type="text" value="123 Maple Street"></div>
+            <div class="field-row-inline"><div class="field-row"><div class="field-label">City</div><input class="field-input" type="text" value="Salt Lake City"></div><div class="field-row" style="width:48px;flex:none"><div class="field-label">State</div><input class="field-input" type="text" value="UT"></div></div>
+            <div class="save-row"><button class="cancel-btn" onclick="closeSection('home')">Cancel</button><button class="save-btn" onclick="saveSection('home')">Save</button></div>
+          </div>
+        </div>
+        <div class="sl">Mortgage</div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('mortgage')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Mortgage details</div><div class="section-toggle-sub">4.875% &#183; 30yr &#183; $1,584/mo</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="mortgage-edit-label">Edit</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="mortgage-body">
+            <div class="field-row"><div class="field-label">Lender</div><input class="field-input" type="text" value="First National Bank"></div>
+            <div class="field-row-inline" style="margin-top:10px"><div class="field-row"><div class="field-label">Rate (%)</div><input class="field-input" type="number" value="4.875" step="0.001"></div><div class="field-row"><div class="field-label">Monthly</div><input class="field-input" type="text" value="$1,584"></div></div>
+            <div class="save-row"><button class="cancel-btn" onclick="closeSection('mortgage')">Cancel</button><button class="save-btn" onclick="saveSection('mortgage')">Save</button></div>
+          </div>
+        </div>
+        <div class="sl">Real estate agent</div>
+        <div class="card" onclick="showProfileView('psv-agent')" style="cursor:pointer">
+          <div class="contact-header"><div class="contact-av">JM</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:#22303E">James Monroe</div><div style="font-size:11px;color:#8C8478;margin-top:1px">Monroe Realty Group &#183; HW-AGT-4821</div></div></div>
+          <div class="info-row"><span class="info-label">View full profile &amp; QR</span><span style="color:#C4C0B8">&#8250;</span></div>
+        </div>
+        <div class="sl">Mortgage lender</div>
+        <div class="card" onclick="showProfileView('psv-lender')" style="cursor:pointer">
+          <div class="contact-header"><div class="contact-av" style="background:#185FA5">RB</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:#22303E">Rachel Barnes</div><div style="font-size:11px;color:#8C8478;margin-top:1px">First National Bank &#183; HW-LND-7392</div></div></div>
+          <div class="info-row"><span class="info-label">View full profile</span><span style="color:#C4C0B8">&#8250;</span></div>
+        </div>
+        <div class="sl">Document vault</div>
+        <div class="card">
+          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Home inspection report</div><div class="doc-meta">4.2 MB &#183; Mar 2019</div></div><button class="doc-btn">&#8595;</button></div>
+          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Closing disclosure</div><div class="doc-meta">1.8 MB &#183; Mar 2019</div></div><button class="doc-btn">&#8595;</button></div>
+          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Homeowner's insurance</div><div class="doc-meta">2.1 MB &#183; Jan 2025</div></div><button class="doc-btn">&#8595;</button></div>
+        </div>
+        <div class="sl">Subscription</div>
+        <div class="sub-free"><div style="font-size:13px;font-weight:600;color:#3B6D11;margin-bottom:4px">100% covered &#183; $0/month</div><div style="font-size:12px;color:#3B6D11;line-height:1.5">James Monroe is an active Hearthward Pro subscriber. Your account is fully covered.</div></div>
+        <div class="sl">Account</div>
+        <div class="card">
+          <div class="acct-row" onclick="showProfileView('psv-family')"><span style="flex:1;font-size:13px;color:#22303E">Household members</span><span style="font-size:13px;color:#8C8478">2 of 4</span><span style="color:#C4C0B8;font-size:14px;margin-left:6px">&#8250;</span></div>
+          <div class="acct-row"><span style="flex:1;font-size:13px;color:#993C1D">Sign out</span></div>
+        </div>
+      </div>
+      <div class="profile-subview" id="psv-agent">
+        <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="display:flex;align-items:center;gap:12px"><div class="contact-av" style="width:46px;height:46px;font-size:14px">JM</div><div><div style="color:#fff;font-size:16px;font-weight:600">James Monroe</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">Monroe Realty Group</div></div></div></div>
+        <div class="sl">Contact info</div>
+        <div class="card"><div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0182</span></div><div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">james@monroerealty.com</span></div><div class="info-row"><span class="info-label">License #</span><span class="info-val" style="font-family:monospace">UT-RE-091234</span></div></div>
+        <div class="sl">Hearthward agent ID</div>
+        <div class="card"><div class="qr-row"><div class="qr-box">QR CODE</div><div class="qr-info"><div class="qr-label">Agent ID</div><div class="qr-id">HW-AGT-4821</div><div style="font-size:11px;color:#8C8478;margin-top:2px">Scan to connect with James</div><div class="qr-btn">Copy ID</div></div></div></div>
+      </div>
+      <div class="profile-subview" id="psv-lender">
+        <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="display:flex;align-items:center;gap:12px"><div class="contact-av" style="width:46px;height:46px;font-size:14px;background:#185FA5">RB</div><div><div style="color:#fff;font-size:16px;font-weight:600">Rachel Barnes</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">First National Bank</div></div></div></div>
+        <div class="sl">Contact info</div>
+        <div class="card"><div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0294</span></div><div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">rachel@firstnational.com</span></div><div class="info-row"><span class="info-label">NMLS #</span><span class="info-val" style="font-family:monospace">204817</span></div></div>
+        <div class="sl">Current loan</div>
+        <div class="card"><div class="info-row"><span class="info-label">Rate</span><span class="info-val">4.875%</span></div><div class="info-row"><span class="info-label">Term</span><span class="info-val">30-year fixed</span></div><div class="info-row"><span class="info-label">Monthly</span><span class="info-val">$1,584/mo</span></div><div class="info-row"><span class="info-label">Balance</span><span class="info-val">$300,000</span></div></div>
+      </div>
+      <div class="profile-subview" id="psv-family">
+        <div class="phd-back" style="padding-bottom:12px"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="color:#fff;font-size:18px;font-weight:600">Household members</div><div style="color:rgba(255,255,255,.55);font-size:12px;margin-top:2px">2 of 4 slots used</div></div>
+        <div class="qr-card"><div class="qr-card-title">Invite via QR code</div><div class="qr-card-sub">Anyone who scans this gets access to your home data.</div><div style="display:flex;align-items:center;gap:14px"><div style="background:#fff;border-radius:8px;padding:8px;font-size:9px;font-weight:700;color:#22303E;flex-shrink:0;width:60px;height:60px;display:flex;align-items:center;justify-content:center;text-align:center">QR CODE</div><div><div style="color:rgba(255,255,255,.55);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">Household ID</div><div style="color:#fff;font-size:13px;font-weight:600;font-family:monospace;margin-bottom:8px">HW-HH-9214</div><button class="qr-share-btn">Share</button></div></div></div>
+        <div class="sl">Members</div>
+        <div class="card"><div class="member-row"><div class="mem-av" style="background:#3D4B5C">MC</div><div class="mem-info"><div class="mem-name">Michael Chen</div><div class="mem-role">Spouse &#183; Joined Mar 2024</div></div><span class="mem-status status-active">Active</span></div><div class="member-row"><div class="mem-av" style="background:#8C8478">EC</div><div class="mem-info"><div class="mem-name">Emma Chen</div><div class="mem-role">Child &#183; Invite sent</div></div><span class="mem-status status-pending">Pending</span></div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="bottom-nav">
+    <button class="active" id="nav-home" onclick="switchTab('home')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l-2 0l9 -9l9 9l-2 0M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/></svg><span>Home</span></button>
+    <button id="nav-maint" onclick="switchTab('maint')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5"/></svg><span>Maintenance</span></button>
+    <button id="nav-value" onclick="switchTab('value')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4v8H3zM9 8h4v12H9zM15 4h4v16h-4"/></svg><span>Value</span></button>
+    <button id="nav-partners" onclick="switchTab('partners')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg><span>Partners</span></button>
+    <button id="nav-profile" onclick="switchTab('profile')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg><span>Profile</span></button>
+  </div>
+</div>
+
+<script>
+var loanTerm=30;
+function fmt(n){return '$'+Math.round(n).toLocaleString();}
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach(function(e){e.classList.remove('active');});
+  document.querySelectorAll('.bottom-nav button').forEach(function(e){e.classList.remove('active');});
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('nav-'+t).classList.add('active');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function switchInner(v){
+  document.getElementById('view-tasks').style.display=v==='tasks'?'block':'none';
+  document.getElementById('view-apps').style.display=v==='apps'?'block':'none';
+  document.getElementById('itab-tasks').classList.toggle('active',v==='tasks');
+  document.getElementById('itab-apps').classList.toggle('active',v==='apps');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function switchPeriod(p){
+  ['m','n'].forEach(function(x){
+    document.getElementById('period-'+x).style.display=x===p?'block':'none';
+    document.getElementById('ptab-'+x).classList.toggle('active',x===p);
+  });
+}
+function switchSection(s){
+  ['ov','eq','mo','boost'].forEach(function(x){
+    document.getElementById('section-'+x).style.display=x===s?'block':'none';
+    document.getElementById('stab-'+x).classList.toggle('active',x===s);
+  });
+  document.querySelector('.scroll').scrollTop=0;
+}
+function showPartner(id){
+  document.querySelectorAll('.pview').forEach(function(v){v.classList.remove('active');});
+  document.getElementById('pv-'+id).classList.add('active');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function showProfileView(id){
+  document.querySelectorAll('.profile-subview').forEach(function(v){v.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function toggleSection(id){
+  var b=document.getElementById(id+'-body'),l=document.getElementById(id+'-edit-label'),o=b.classList.contains('open');
+  b.classList.toggle('open',!o);
+  if(l)l.textContent=o?'Edit':'Done';
+}
+function closeSection(id){
+  var b=document.getElementById(id+'-body'),l=document.getElementById(id+'-edit-label');
+  if(b)b.classList.remove('open');if(l)l.textContent='Edit';
+}
+function saveSection(id){closeSection(id);}
+function openApp(id){
+  document.getElementById('app-list-view').style.display='none';
+  document.querySelectorAll('.app-det-view').forEach(function(v){v.classList.remove('adv-active');});
+  document.getElementById('app-'+id).classList.add('adv-active');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function closeApp(){
+  document.querySelectorAll('.app-det-view').forEach(function(v){v.classList.remove('adv-active');});
+  document.getElementById('app-list-view').style.display='block';
+  document.querySelector('.scroll').scrollTop=0;
+}
+function updateEquity(){
+  var sale=parseFloat(document.getElementById('sale-price').value);
+  var loan=parseFloat(document.getElementById('loan-balance').value);
+  var pct=parseFloat(document.getElementById('selling-costs-pct').value);
+  var costs=sale*pct/100,equity=sale-loan,net=sale-loan-costs;
+  var ratio=Math.max(0,Math.min(1,equity/sale));
+  var offset=(2*Math.PI*50*(1-ratio)).toFixed(1);
+  document.getElementById('sale-price-display').textContent=fmt(sale);
+  document.getElementById('loan-balance-display').textContent=fmt(loan);
+  document.getElementById('selling-costs-display').textContent=fmt(costs);
+  document.getElementById('equity-display').textContent=fmt(equity);
+  document.getElementById('equity-arc').setAttribute('stroke-dashoffset',offset);
+  document.getElementById('eq-sale').textContent=fmt(sale);
+  document.getElementById('eq-loan').textContent=fmt(loan);
+  document.getElementById('eq-net').textContent=fmt(net);
+}
+function setTerm(t,el){
+  loanTerm=t;
+  document.querySelectorAll('.seg-btn').forEach(function(b){b.classList.remove('active');});
+  el.classList.add('active');calcMortgage();
+}
+function calcMortgage(){
+  var price=parseFloat(document.getElementById('m-price').value)||0;
+  var down=parseFloat(document.getElementById('m-down').value)||0;
+  var rate=parseFloat(document.getElementById('m-rate').value)||0;
+  var principal=price-down,r=rate/100/12,n=loanTerm*12;
+  var pi=r===0?principal/n:principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  var tax=2440/12,ins=1044/12;
+  document.getElementById('mort-payment').textContent=fmt(pi+tax+ins);
+  document.getElementById('mort-pi').textContent=fmt(pi);
+  document.getElementById('mort-tax').textContent=fmt(tax);
+  document.getElementById('mort-ins').textContent=fmt(ins);
+  document.getElementById('mort-sub').textContent=loanTerm+'-yr fixed \u00b7 '+fmt(principal)+' loan';
+}
+var props=[{id:'p1',addr:'123 Maple Street',city:'Salt Lake City, UT',type:'Primary',val:'$487,200'},{id:'p2',addr:'456 Oak Avenue',city:'Park City, UT',type:'Rental',val:'$632,000'}];
+var activePropId='p1',propDropOpen=false,newPropType='Primary';
+function getActiveProp(){return props.find(function(p){return p.id===activePropId;})||props[0];}
+function renderPropOptions(){
+  var el=document.getElementById('prop-options');if(!el)return;
+  var html='';
+  props.forEach(function(p){
+    var isA=p.id===activePropId;
+    html+='<div style="padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;background:'+(isA?'#FDFCFA':'#fff')+';border-top:0.5px solid rgba(0,0,0,0.06)" onclick="switchProp(\''+p.id+'\')">'
+      +'<div style="width:30px;height:30px;border-radius:8px;background:#FFF7F5;border:1.5px solid #C4694A;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px">&#8962;</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:#22303E">'+p.addr+'</div><div style="font-size:11px;color:#8C8478;margin-top:1px">'+p.city+' \u00b7 '+p.type+' \u00b7 '+p.val+'</div></div>'
+      +(isA?'<span style="color:#C4694A">&#10003;</span>':'')+'</div>';
+  });
+  el.innerHTML=html;
+}
+function togglePropDropdown(){
+  propDropOpen=!propDropOpen;
+  var panel=document.getElementById('prop-panel');
+  var chev=document.getElementById('prop-chevron');
+  if(panel)panel.classList.toggle('open',propDropOpen);
+  if(chev)chev.style.transform=propDropOpen?'rotate(180deg)':'rotate(0deg)';
+  if(propDropOpen){renderPropOptions();hidePropAddForm();}
+}
+function closePropDropdown(){
+  propDropOpen=false;
+  var panel=document.getElementById('prop-panel');
+  var chev=document.getElementById('prop-chevron');
+  if(panel)panel.classList.remove('open');
+  if(chev)chev.style.transform='rotate(0deg)';
+  hidePropAddForm();
+}
+function switchProp(id){
+  activePropId=id;var p=getActiveProp();
+  document.getElementById('prop-trigger-name').textContent=p.addr;
+  document.getElementById('prop-trigger-meta').textContent=p.city+' \u00b7 '+p.type;
+  renderPropOptions();setTimeout(closePropDropdown,200);
+}
+function showPropAddForm(){
+  document.getElementById('prop-add-form').style.display='block';
+  document.getElementById('prop-add-row').style.display='none';
+  newPropType='Primary';
+  document.querySelectorAll('.af-type-btn').forEach(function(b){b.classList.remove('sel');});
+  document.getElementById('af-type-primary').classList.add('sel');
+}
+function hidePropAddForm(){
+  var f=document.getElementById('prop-add-form'),r=document.getElementById('prop-add-row');
+  if(f)f.style.display='none';if(r)r.style.display='flex';
+}
+function selPropType(type,el){
+  newPropType=type;
+  document.querySelectorAll('.af-type-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+}
+function saveNewProp(){
+  var addr=(document.getElementById('new-prop-addr').value||'').trim()||'New Property';
+  var city=(document.getElementById('new-prop-city').value||'').trim()||'Utah';
+  props.push({id:'p'+Date.now(),addr:addr,city:city,type:newPropType,val:'--'});
+  activePropId=props[props.length-1].id;
+  var p=getActiveProp();
+  document.getElementById('prop-trigger-name').textContent=p.addr;
+  document.getElementById('prop-trigger-meta').textContent=p.city+' \u00b7 '+p.type;
+  closePropDropdown();
+}
+updateEquity();
+calcMortgage();
+</script>
+</body>
+</html>
