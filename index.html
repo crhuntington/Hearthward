@@ -321,6 +321,88 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
 .af-type-btn.sel{background:#FFF7F5;border:1.5px solid #C4694A;color:#C4694A;font-weight:600}
 .af-save-btn{width:100%;background:#C4694A;border:none;border-radius:9px;padding:9px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:10px}
 .af-cancel-btn{width:100%;background:transparent;border:none;padding:6px;font-size:12px;color:#8C8478;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:2px}
+
+.toggle-row{padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:.5px solid rgba(0,0,0,.06)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-info{flex:1}
+.toggle-label{font-size:13px;font-weight:500;color:#22303E}
+.toggle-sublabel{font-size:11px;color:#8C8478;margin-top:2px}
+.hw-toggle{position:relative;width:38px;height:22px;flex-shrink:0}
+.hw-toggle input{opacity:0;width:0;height:0;position:absolute}
+.hw-toggle-slider{position:absolute;cursor:pointer;inset:0;background:#C4C0B8;border-radius:22px;transition:.2s}
+.hw-toggle-slider::before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s}
+.hw-toggle input:checked + .hw-toggle-slider{background:#C4694A}
+.hw-toggle input:checked + .hw-toggle-slider::before{transform:translateX(16px)}
+.role-chip{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.role-owner{background:#FFF7F5;color:#C4694A;border:.5px solid rgba(196,105,74,.25)}
+.role-partner{background:#E6F1FB;color:#185FA5;border:.5px solid rgba(24,95,165,.2)}
+.role-family{background:#EDE9E2;color:#3D4B5C;border:.5px solid rgba(61,75,92,.2)}
+.role-manager{background:#EEEDFE;color:#534AB7;border:.5px solid rgba(83,74,183,.2)}
+.role-tenant{background:#FAEEDA;color:#854F0B;border:.5px solid rgba(133,79,11,.2)}
+.access-chip{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap}
+.access-full{background:#EAF3DE;color:#3B6D11}
+.access-limited{background:#FFF3E0;color:#854F0B}
+.access-view{background:#EDE9E2;color:#3D4B5C}
+.expiry-chip{font-size:10px;font-weight:500;color:#8C8478;background:#F7F4EF;padding:2px 7px;border-radius:20px}
+.expiry-chip.soon{color:#993C1D;background:#FAECE7}
+.role-selector{display:flex;flex-wrap:wrap;gap:7px;padding:4px 0}
+.role-opt{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;cursor:pointer;border:.5px solid rgba(0,0,0,.12);background:#fff;color:#3D4B5C;font-family:-apple-system,sans-serif}
+.role-opt.sel{background:#22303E;color:#fff;border-color:#22303E}
+.prop-mem-header{background:#3D4B5C;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid rgba(255,255,255,.1)}
+.prop-mem-label{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.05em;text-transform:uppercase}
+.prop-mem-count{font-size:11px;color:rgba(255,255,255,.5)}
+.invite-btn{background:#C4694A;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif}
+
+.mort-field{margin-bottom:14px}
+.mort-label{font-size:13px;font-weight:500;color:#3D4B5C;margin-bottom:6px}
+.mort-input{width:100%;background:#F7F4EF;border:.5px solid rgba(0,0,0,.1);border-radius:9px;padding:0 12px;height:40px;font-size:14px;color:#22303E;font-family:-apple-system,sans-serif;outline:none;display:block}
+.mort-input-prefix{display:flex;align-items:center;background:#F7F4EF;border:.5px solid rgba(0,0,0,.1);border-radius:9px;overflow:hidden;height:40px}
+.mort-prefix{padding:0 10px;font-size:13px;color:#8C8478;border-right:.5px solid rgba(0,0,0,.1);height:100%;display:flex;align-items:center;flex-shrink:0;background:#F7F4EF}
+.mort-prefix-input{flex:1;border:none;outline:none;padding:0 12px;font-size:14px;color:#22303E;font-family:-apple-system,sans-serif;background:#F7F4EF;height:100%}
+
+.pdf-viewer{display:none;position:absolute;inset:0;background:#F7F4EF;z-index:50;flex-direction:column;border-radius:38px;overflow:hidden}
+.pdf-viewer.open{display:flex}
+.pdf-viewer-header{background:#22303E;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.pdf-viewer-title{color:#fff;font-size:14px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdf-viewer-actions{display:flex;gap:8px;flex-shrink:0}
+.pdf-viewer-btn{background:rgba(255,255,255,.12);border:.5px solid rgba(255,255,255,.2);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:500;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif;display:flex;align-items:center;gap:4px}
+.pdf-viewer-scroll{flex:1;overflow-y:auto;padding:16px 14px;scrollbar-width:none}
+.pdf-viewer-scroll::-webkit-scrollbar{display:none}
+.pdf-page{background:#fff;border-radius:8px;box-shadow:0 2px 16px rgba(0,0,0,.12);padding:24px 20px;margin-bottom:12px}
+.pdf-page-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:14px;border-bottom:1.5px solid #22303E}
+.pdf-page-num{font-size:10px;color:#8C8478;text-align:right}
+
+.app-photos{margin:0 14px 8px;width:calc(100% - 28px)}
+.app-photos-label{font-size:10px;font-weight:600;color:#8C8478;letter-spacing:.08em;text-transform:uppercase;padding:8px 20px 8px;margin:0 -14px}
+.app-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.app-photo-slot{aspect-ratio:1;border-radius:10px;overflow:hidden;position:relative;background:#F7F4EF;border:.5px solid rgba(0,0,0,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.app-photo-slot.has-photo{border:none}
+.app-photo-slot img{width:100%;height:100%;object-fit:cover}
+.app-photo-slot-icon{color:#C4694A;opacity:.7}
+.app-photo-slot-label{font-size:10px;color:#8C8478;font-weight:500;text-align:center;line-height:1.3}
+.app-photo-slot-remove{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(34,48,62,.6);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;line-height:1}
+
+.slog-entry{padding:11px 14px;display:flex;align-items:flex-start;gap:10px}
+.slog-entry:not(:last-child){border-bottom:.5px solid rgba(0,0,0,.06)}
+.slog-dot-wrap{display:flex;flex-direction:column;align-items:center;padding-top:3px;gap:3px;flex-shrink:0}
+.slog-dot{width:9px;height:9px;border-radius:50%;background:#C4694A;flex-shrink:0}
+.slog-line{width:1px;flex:1;background:rgba(0,0,0,.1);min-height:12px}
+.slog-content{flex:1;min-width:0}
+.slog-date{font-size:11px;font-weight:600;color:#8C8478;margin-bottom:2px}
+.slog-title{font-size:13px;font-weight:500;color:#22303E;margin-bottom:2px}
+.slog-note{font-size:12px;color:#8C8478;line-height:1.5}
+.slog-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.slog-pro{background:#E6F1FB;color:#185FA5}
+.slog-diy{background:#EAF3DE;color:#3B6D11}
+.slog-add-form{padding:12px 14px;border-top:.5px solid rgba(0,0,0,.07);background:#FDFCFA}
+.slog-input{width:100%;background:#F7F4EF;border:.5px solid rgba(0,0,0,.1);border-radius:8px;padding:0 10px;height:36px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;outline:none;margin-bottom:7px;display:block}
+.slog-textarea{width:100%;background:#F7F4EF;border:.5px solid rgba(0,0,0,.1);border-radius:8px;padding:8px 10px;font-size:13px;color:#22303E;font-family:-apple-system,sans-serif;outline:none;resize:none;height:60px;line-height:1.5;margin-bottom:7px;display:block}
+.slog-type-row{display:flex;gap:6px;margin-bottom:8px}
+.slog-type-btn{flex:1;padding:5px;font-size:11px;font-weight:500;border-radius:7px;cursor:pointer;font-family:-apple-system,sans-serif;text-align:center;border:.5px solid rgba(0,0,0,.12);background:#fff;color:#3D4B5C}
+.slog-type-btn.sel{background:#22303E;color:#fff;border-color:#22303E}
+.slog-save-btn{width:100%;background:#C4694A;color:#fff;border:none;border-radius:8px;padding:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif}
+.slog-toggle{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border-top:.5px solid rgba(0,0,0,.07);background:#FDFCFA}
+.slog-toggle-label{font-size:12px;font-weight:500;color:#C4694A}
 </style>
 </head>
 <body>
@@ -398,18 +480,726 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
         </div>
       </div>
       <div id="view-apps" style="display:none">
-        <div class="app-det-view" id="app-ac"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Conditioning</div><div class="adet-sub">Service annually before summer</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Carrier" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. 24ACC636" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="e.g. 2018" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, technician notes..."></textarea></div><button class="asave">Save appliance</button></div>
-        <div class="app-det-view" id="app-furnace"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Furnace</div><div class="adet-sub">Carrier &#183; 59TP6 &#183; 2019</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Carrier" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="59TP6060V17" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2019" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace furnace filter</div><div class="amfreq">Every 90 days</div></div></div><div class="amrow"><div><div class="amname">Annual tune-up</div><div class="amfreq">Every fall before heating season</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta">Tune-up done Oct 2023. Filter replaced Jan 2024.</textarea></div><button class="asave" style="background:#3D4B5C">Save changes</button></div>
-        <div class="app-det-view" id="app-filter"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Filters</div><div class="adet-sub">Replace every 90 days</div></div><div class="asl">Filter details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="3M Filtrete" type="text"></div><div class="afrow"><span class="aflbl">Size</span><input class="afinp" value="20 x 25 x 1 in." type="text"></div><div class="afrow"><span class="aflbl">MERV Rating</span><input class="afinp" value="MERV 11" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Replacement dates..."></textarea></div><button class="asave">Save</button></div>
-        <div class="app-det-view" id="app-waterheater"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Water &amp; Plumbing</button></div><div class="adet-hdr"><div class="adet-title">Water Heater</div><div class="adet-sub">Flush annually</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Rheem" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. XE40T12EC45U0" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="Decoded from serial #" type="text"></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Flush sediment from tank</div><div class="amfreq">Annually &#8212; extends life</div></div></div><div class="amrow"><div><div class="amname">Test pressure relief valve</div><div class="amfreq">Annually &#8212; safety critical</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Last flush, plumber notes..."></textarea></div><button class="asave">Save appliance</button></div>
-        <div class="app-det-view" id="app-roof"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Roof</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Asphalt shingle" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2008" type="text"></div><div class="afrow"><span class="aflbl">Warranty Expiry</span><input class="afinp" placeholder="e.g. 2033" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Inspection notes, repair history..."></textarea></div><button class="asave">Save roof details</button></div>
-        <div class="app-det-view" id="app-gutters"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Gutters &amp; Downspouts</div><div class="adet-sub">Clean spring &amp; fall</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Aluminum" type="text"></div><div class="afrow"><span class="aflbl">Last Cleaned</span><input class="afinp" placeholder="e.g. Oct 2024" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, contractor contacts..."></textarea></div><button class="asave">Save gutter details</button></div>
-        <div class="app-det-view" id="app-windows"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Windows &amp; Caulking</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Window Type</span><input class="afinp" placeholder="e.g. Double-pane vinyl" type="text"></div><div class="afrow"><span class="aflbl">Last Caulked</span><input class="afinp" placeholder="e.g. Sep 2023" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Failed seals, foggy panes, repairs..."></textarea></div><button class="asave">Save window details</button></div>
-        <div class="app-det-view" id="app-smoke"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Smoke Detectors</div><div class="adet-sub">Nest Protect &#183; 2019 &#183; Test monthly</div></div><div style="margin:8px 14px 0;width:calc(100% - 28px);background:#FAECE7;border-radius:10px;padding:10px 12px"><div style="font-size:12px;font-weight:600;color:#993C1D">Battery status unknown</div><div style="font-size:11px;color:#993C1D;opacity:.8;margin-top:1px">Last battery change not recorded</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" value="Nest Protect Gen 2" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" value="2019" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" value="2029 (10-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Battery history, unit locations..."></textarea></div><button class="asave">Save detector details</button></div>
-        <div class="app-det-view" id="app-co"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">CO Detectors</div><div class="adet-sub">Test monthly</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" placeholder="e.g. Kidde KN-COPP-3" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2020" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" placeholder="e.g. 2027 (7-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Unit locations, past alarms..."></textarea></div><button class="asave">Save CO detector details</button></div>
-        <div class="app-det-view" id="app-extinguisher"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Fire Extinguisher</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Rating</span><input class="afinp" placeholder="e.g. 2-A:10-B:C" type="text"></div><div class="afrow"><span class="aflbl">Last Inspected</span><input class="afinp" placeholder="e.g. Jan 2025" type="text"></div><div class="afrow"><span class="aflbl">Location</span><input class="afinp" placeholder="e.g. Kitchen, Garage" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Location of each unit, service history..."></textarea></div><button class="asave">Save extinguisher details</button></div>
-        <div class="app-det-view" id="app-fridge"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Refrigerator</div><div class="adet-sub">Samsung RF28R &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Samsung" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="RF28R7351SR" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Water Filter</span><input class="afinp" value="DA29-00020B" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace water filter</div><div class="amfreq">Every 6 months</div></div></div><div class="amrow"><div><div class="amname">Vacuum condenser coils</div><div class="amfreq">Twice yearly</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Filter change dates, service calls..."></textarea></div><button class="asave" style="background:#3D4B5C">Save changes</button></div>
-        <div class="app-det-view" id="app-washerdryer"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Washer / Dryer</div><div class="adet-sub">LG &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="LG" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model # (Washer)</span><input class="afinp" value="WT7300CW" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2021" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Clean lint trap</div><div class="amfreq">After every dryer load</div></div></div><div class="amrow"><div><div class="amname">Clean dryer vent duct</div><div class="amfreq">Annually &#8212; reduces fire risk</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Vent cleaning dates, service calls..."></textarea></div><button class="asave">Save changes</button></div>
+        <div class="app-det-view" id="app-ac"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Conditioning</div><div class="adet-sub">Service annually before summer</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Carrier" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. 24ACC636" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="e.g. 2018" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, technician notes..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save appliance</button></div>
+        <div class="app-det-view" id="app-furnace"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Furnace</div><div class="adet-sub">Carrier &#183; 59TP6 &#183; 2019</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Carrier" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="59TP6060V17" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2019" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace furnace filter</div><div class="amfreq">Every 90 days</div></div></div><div class="amrow"><div><div class="amname">Annual tune-up</div><div class="amfreq">Every fall before heating season</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta">Tune-up done Oct 2023. Filter replaced Jan 2024.</textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave" style="background:#3D4B5C">Save changes</button></div>
+        <div class="app-det-view" id="app-filter"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">HVAC &amp; Climate</button></div><div class="adet-hdr"><div class="adet-title">Air Filters</div><div class="adet-sub">Replace every 90 days</div></div><div class="asl">Filter details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="3M Filtrete" type="text"></div><div class="afrow"><span class="aflbl">Size</span><input class="afinp" value="20 x 25 x 1 in." type="text"></div><div class="afrow"><span class="aflbl">MERV Rating</span><input class="afinp" value="MERV 11" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Replacement dates..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save</button></div>
+        <div class="app-det-view" id="app-waterheater"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Water &amp; Plumbing</button></div><div class="adet-hdr"><div class="adet-title">Water Heater</div><div class="adet-sub">Flush annually</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" placeholder="e.g. Rheem" type="text"></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" placeholder="e.g. XE40T12EC45U0" type="text"></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" placeholder="Decoded from serial #" type="text"></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Flush sediment from tank</div><div class="amfreq">Annually &#8212; extends life</div></div></div><div class="amrow"><div><div class="amname">Test pressure relief valve</div><div class="amfreq">Annually &#8212; safety critical</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Last flush, plumber notes..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save appliance</button></div>
+        <div class="app-det-view" id="app-roof"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Roof</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Asphalt shingle" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2008" type="text"></div><div class="afrow"><span class="aflbl">Warranty Expiry</span><input class="afinp" placeholder="e.g. 2033" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Inspection notes, repair history..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save roof details</button></div>
+        <div class="app-det-view" id="app-gutters"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Gutters &amp; Downspouts</div><div class="adet-sub">Clean spring &amp; fall</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Material</span><input class="afinp" placeholder="e.g. Aluminum" type="text"></div><div class="afrow"><span class="aflbl">Last Cleaned</span><input class="afinp" placeholder="e.g. Oct 2024" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Service dates, contractor contacts..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save gutter details</button></div>
+        <div class="app-det-view" id="app-windows"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Structure &amp; Exterior</button></div><div class="adet-hdr"><div class="adet-title">Windows &amp; Caulking</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Window Type</span><input class="afinp" placeholder="e.g. Double-pane vinyl" type="text"></div><div class="afrow"><span class="aflbl">Last Caulked</span><input class="afinp" placeholder="e.g. Sep 2023" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Failed seals, foggy panes, repairs..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save window details</button></div>
+        <div class="app-det-view" id="app-smoke"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Smoke Detectors</div><div class="adet-sub">Nest Protect &#183; 2019 &#183; Test monthly</div></div><div style="margin:8px 14px 0;width:calc(100% - 28px);background:#FAECE7;border-radius:10px;padding:10px 12px"><div style="font-size:12px;font-weight:600;color:#993C1D">Battery status unknown</div><div style="font-size:11px;color:#993C1D;opacity:.8;margin-top:1px">Last battery change not recorded</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" value="Nest Protect Gen 2" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" value="2019" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" value="2029 (10-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Battery history, unit locations..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save detector details</button></div>
+        <div class="app-det-view" id="app-co"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">CO Detectors</div><div class="adet-sub">Test monthly</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Brand / Model</span><input class="afinp" placeholder="e.g. Kidde KN-COPP-3" type="text"></div><div class="afrow"><span class="aflbl">Year Installed</span><input class="afinp" placeholder="e.g. 2020" type="text"></div><div class="afrow"><span class="aflbl">Replace By</span><input class="afinp" placeholder="e.g. 2027 (7-yr limit)" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Unit locations, past alarms..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save CO detector details</button></div>
+        <div class="app-det-view" id="app-extinguisher"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Home Safety</button></div><div class="adet-hdr"><div class="adet-title">Fire Extinguisher</div><div class="adet-sub">Inspect annually</div></div><div class="asl">Details</div><div class="afc"><div class="afrow"><span class="aflbl">Rating</span><input class="afinp" placeholder="e.g. 2-A:10-B:C" type="text"></div><div class="afrow"><span class="aflbl">Last Inspected</span><input class="afinp" placeholder="e.g. Jan 2025" type="text"></div><div class="afrow"><span class="aflbl">Location</span><input class="afinp" placeholder="e.g. Kitchen, Garage" type="text"></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Location of each unit, service history..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save extinguisher details</button></div>
+        <div class="app-det-view" id="app-fridge"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Refrigerator</div><div class="adet-sub">Samsung RF28R &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="Samsung" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model #</span><input class="afinp" value="RF28R7351SR" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Water Filter</span><input class="afinp" value="DA29-00020B" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Replace water filter</div><div class="amfreq">Every 6 months</div></div></div><div class="amrow"><div><div class="amname">Vacuum condenser coils</div><div class="amfreq">Twice yearly</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Filter change dates, service calls..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave" style="background:#3D4B5C">Save changes</button></div>
+        <div class="app-det-view" id="app-washerdryer"><div class="back-bar-app"><button class="back-circle-app" onclick="closeApp()">&#8592;</button><button class="back-lbl-app" onclick="closeApp()">Appliances</button></div><div class="adet-hdr"><div class="adet-title">Washer / Dryer</div><div class="adet-sub">LG &#183; 2021</div></div><div class="asl">Equipment ID</div><div class="afc"><div class="afrow"><span class="aflbl">Brand</span><input class="afinp" value="LG" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Model # (Washer)</span><input class="afinp" value="WT7300CW" type="text"><span class="aitag">AI</span></div><div class="afrow"><span class="aflbl">Year</span><input class="afinp" value="2021" type="text"><span class="aitag">AI</span></div></div><div class="asl">Maintenance</div><div class="amc"><div class="amrow"><div><div class="amname">Clean lint trap</div><div class="amfreq">After every dryer load</div></div></div><div class="amrow"><div><div class="amname">Clean dryer vent duct</div><div class="amfreq">Annually &#8212; reduces fire risk</div></div></div></div><div class="asl">Notes</div><div class="anc"><textarea class="anta" placeholder="Vent cleaning dates, service calls..."></textarea></div><div class="asl">Service log</div>
+          <div class="afc" style="overflow:visible">
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot"></div><div class="slog-line"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Oct 14, 2023</div>
+                <div class="slog-title">Annual tune-up</div>
+                <div class="slog-note">Cleaned heat exchanger, checked igniter, replaced capacitor. System running efficiently.</div>
+              </div>
+              <span class="slog-badge slog-pro">Pro</span>
+            </div>
+            <div class="slog-entry">
+              <div class="slog-dot-wrap"><div class="slog-dot" style="background:#3B6D11"></div></div>
+              <div class="slog-content">
+                <div class="slog-date">Jan 8, 2024</div>
+                <div class="slog-title">Filter replaced</div>
+                <div class="slog-note">3M Filtrete MERV-11. Next due April 2024.</div>
+              </div>
+              <span class="slog-badge slog-diy">DIY</span>
+            </div>
+            <div class="slog-toggle" onclick="toggleSlog(this)">
+              <span class="slog-toggle-label">+ Add service entry</span>
+            </div>
+            <div class="slog-add-form" style="display:none">
+              <input class="slog-input" type="text" placeholder="What was done? e.g. Annual tune-up">
+              <div style="display:flex;gap:7px;margin-bottom:7px">
+                <input class="slog-input" type="text" placeholder="Date" style="margin-bottom:0;flex:1">
+                <input class="slog-input" type="text" placeholder="Cost (optional)" style="margin-bottom:0;width:100px;flex:none">
+              </div>
+              <textarea class="slog-textarea" placeholder="Notes, technician name, parts replaced..."></textarea>
+              <div class="slog-type-row">
+                <button class="slog-type-btn sel" onclick="selSlogType(this)">DIY</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Pro service</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Repair</button>
+                <button class="slog-type-btn" onclick="selSlogType(this)">Inspection</button>
+              </div>
+              <button class="slog-save-btn" onclick="addSlogEntry(this)">Save entry</button>
+            </div>
+          </div>
+          <div class="asl">Photos</div>
+          <div class="app-photos">
+            <div class="app-photo-grid">
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+              <div class="app-photo-slot" onclick="this.querySelector('input').click()">
+                <input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)">
+                <svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg>
+                <span class="app-photo-slot-label">Add photo</span>
+              </div>
+            </div>
+          </div>
+          <button class="asave">Save changes</button></div>
         <div id="app-list-view">
           <div class="app-cat-hdr"><div class="app-cat-icon aci-gr">AC</div><div><div class="app-cat-title">HVAC &amp; Climate</div><div class="app-cat-sub">Filter every 90 days &#183; Annual tune-up</div></div></div>
           <div class="app-list">
@@ -447,8 +1237,7 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
       <div class="phd"><div class="phd-title">Home Value</div><div class="phd-sub">123 Maple Street &#183; Updated today</div></div>
       <div class="s-tabs">
         <button class="s-tab active" id="stab-ov" onclick="switchSection('ov')">Overview</button>
-        <button class="s-tab" id="stab-eq" onclick="switchSection('eq')">Equity</button>
-        <button class="s-tab" id="stab-mo" onclick="switchSection('mo')">Mortgage</button>
+        <button class="s-tab" id="stab-mo" onclick="switchSection('mo')">Mortgage Calc</button>
         <button class="s-tab" id="stab-boost" onclick="switchSection('boost')">Increase Value</button>
       </div>
       <div id="section-ov">
@@ -456,15 +1245,12 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
           <div class="card-pad" style="padding-bottom:8px"><div class="val-label">Estimated value</div><div class="val-big">$487,200</div><div class="val-up">&#8593; $12,400 in 12 months</div></div>
           <div class="chart-wrap"><div class="chart-bars"><div class="bar" style="height:35%"></div><div class="bar" style="height:42%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:62%"></div><div class="bar" style="height:78%"></div><div class="bar hi" style="height:100%"></div></div><div class="chart-labels"><span class="chart-lbl">2020</span><span class="chart-lbl">2025</span></div></div>
         </div>
+        <div class="sl" style="margin-top:4px">Equity calculator</div>
         <div class="equity-row">
           <div class="equity-cell"><div class="equity-cell-label">Value</div><div class="equity-cell-val">$487,200</div></div>
           <div class="equity-cell"><div class="equity-cell-label">Balance</div><div class="equity-cell-val">$300,000</div></div>
           <div class="equity-cell highlighted"><div class="equity-cell-label">Equity</div><div class="equity-cell-val">$187,200</div></div>
         </div>
-        <div class="sl">Nearby sold comps</div>
-        <div class="card"><div class="comp-row"><div><div class="comp-addr">118 Maple St &#183; 3bd/2ba</div><div class="comp-detail">Sold Mar 2025</div></div><div class="comp-price">$478,500</div></div><div class="comp-row"><div><div class="comp-addr">205 Oak Ave &#183; 3bd/2ba</div><div class="comp-detail">Sold Feb 2025</div></div><div class="comp-price">$495,000</div></div></div>
-      </div>
-      <div id="section-eq" style="display:none">
         <div class="card" style="margin-top:2px">
           <div class="equity-ring-wrap">
             <div class="equity-ring">
@@ -474,11 +1260,17 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
           </div>
           <div class="calc-field"><div class="calc-label"><span>Home Sale Price</span><span class="val-display" id="sale-price-display">$487,200</span></div><input type="range" id="sale-price" min="200000" max="1500000" step="1000" value="487200" oninput="updateEquity()"></div>
           <div class="calc-field"><div class="calc-label"><span>Loan Balance</span><span class="val-display" id="loan-balance-display">$300,000</span></div><input type="range" id="loan-balance" min="0" max="1200000" step="1000" value="300000" oninput="updateEquity()"></div>
-          <div class="calc-field" style="padding-bottom:0"><div class="calc-label"><span>Selling Costs</span><span class="val-display" id="selling-costs-display">$29,232</span></div><input type="range" id="selling-costs-pct" min="0" max="10" step="0.5" value="6" oninput="updateEquity()"></div>
         </div>
-        <div class="equity-breakdown"><div class="eq-cell"><div class="eq-cell-label">Sale Price</div><div class="eq-cell-val" id="eq-sale">$487,200</div></div><div class="eq-cell"><div class="eq-cell-label">Loan Payoff</div><div class="eq-cell-val" id="eq-loan">$300,000</div></div><div class="eq-cell"><div class="eq-cell-label">Net Proceeds</div><div class="eq-cell-val green" id="eq-net">$157,968</div></div></div>
-        <div style="margin:0 14px 10px;background:#EAF3DE;border-radius:9px;padding:9px 12px;font-size:12px;color:#3B6D11;line-height:1.5;width:calc(100% - 28px)">These proceeds could cover a down payment on your next home.</div>
+        <div class="equity-breakdown"><div class="eq-cell"><div class="eq-cell-label">Sale Price</div><div class="eq-cell-val" id="eq-sale">$487,200</div></div><div class="eq-cell"><div class="eq-cell-label">Loan Payoff</div><div class="eq-cell-val" id="eq-loan">$300,000</div></div><div class="eq-cell"><div class="eq-cell-label">Est. Equity</div><div class="eq-cell-val green" id="eq-net">$187,200</div></div></div>
+        <div style="background:#fff;border-radius:14px;margin:8px 14px 0;border:.5px solid rgba(0,0,0,.1);padding:14px 16px;width:calc(100% - 28px);display:flex;align-items:center;gap:14px">
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:#22303E;margin-bottom:5px">Ready to use your equity?</div>
+            <div style="font-size:12px;color:#8C8478;line-height:1.5">Whether you're thinking about selling, upgrading, or refinancing — let's talk about your next steps.</div>
+          </div>
+          <button onclick="switchTab('profile');setTimeout(function(){showProfileView('psv-agent');},50)" style="background:#22303E;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif;white-space:nowrap;flex-shrink:0">Contact<br>Agent</button>
+        </div>
       </div>
+      <div id="section-eq" style="display:none"></div>
       <div id="section-mo" style="display:none">
         <div class="mort-result"><div class="mort-result-label">Estimated monthly payment</div><div class="mort-result-amount" id="mort-payment">$2,548</div><div class="mort-result-sub" id="mort-sub">30-yr fixed &#183; $389,760 loan</div><div class="mort-breakdown"><div class="mort-cell"><div class="mort-cell-label">Principal &amp; Interest</div><div class="mort-cell-val" id="mort-pi">$2,258</div></div><div class="mort-cell"><div class="mort-cell-label">Tax (est.)</div><div class="mort-cell-val" id="mort-tax">$203</div></div><div class="mort-cell"><div class="mort-cell-label">Insurance</div><div class="mort-cell-val" id="mort-ins">$87</div></div></div></div>
         <div class="divider-label">Home details</div>
@@ -545,7 +1337,7 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
         <div class="prop-selector">
           <button class="prop-trigger" id="prop-trigger" onclick="togglePropDropdown()">
             <div class="pt-icon">&#8962;</div>
-            <div class="pt-info"><div class="pt-curr-lbl">Currently viewing</div><div class="pt-curr-name" id="prop-trigger-name">123 Maple Street</div><div class="pt-curr-meta" id="prop-trigger-meta">Salt Lake City, UT &#183; Primary</div></div>
+            <div class="pt-info"><div class="pt-curr-lbl">Currently viewing</div><div class="pt-curr-name" id="prop-trigger-name">The Maple House</div></div>
             <div style="display:flex;align-items:center;gap:6px;flex-shrink:0"><span class="pt-badge">Active</span><span id="prop-chevron" style="color:#C4694A;font-size:13px;transition:transform .2s">&#8964;</span></div>
           </button>
           <div class="prop-panel" id="prop-panel">
@@ -574,25 +1366,122 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
         <div class="sl">Home details</div>
         <div class="section-card">
           <div class="section-toggle" onclick="toggleSection('home')">
-            <div class="section-toggle-left"><div><div class="section-toggle-title">Home details</div><div class="section-toggle-sub">123 Maple St &#183; 1,892 sqft &#183; 3bd/2ba</div></div></div>
+            <div class="section-toggle-left"><div><div class="section-toggle-title" id="home-section-title">The Maple House</div></div></div>
             <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="home-edit-label">Edit</span><span style="color:#C4694A">&#8964;</span></div>
           </div>
           <div class="section-body" id="home-body">
-            <div class="field-row"><div class="field-label">Street address</div><input class="field-input" type="text" value="123 Maple Street"></div>
-            <div class="field-row-inline"><div class="field-row"><div class="field-label">City</div><input class="field-input" type="text" value="Salt Lake City"></div><div class="field-row" style="width:48px;flex:none"><div class="field-label">State</div><input class="field-input" type="text" value="UT"></div></div>
+            <div class="field-row">
+              <div class="field-label">Property nickname</div>
+              <input class="field-input" type="text" value="The Maple House" placeholder="e.g. The Maple House, Lake Cabin" id="nickname-input" oninput="updateNickname(this.value)">
+              <div style="font-size:10px;color:#8C8478;margin-top:4px">How you refer to this property in the app</div>
+            </div>
+            <div class="field-row">
+              <div class="field-label">Street address</div>
+              <div style="position:relative">
+                <input class="field-input" type="text" value="123 Maple Street" id="addr-input" placeholder="Start typing to search..." style="padding-right:32px">
+                <svg style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#8C8478" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 4.97-7 13-7 13S5 13.97 5 9a7 7 0 0 1 7-7zM12 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/></svg>
+              </div>
+              <div style="font-size:10px;color:#8C8478;margin-top:4px">Verified via Google Maps</div>
+            </div>
+            <div class="field-row-inline">
+              <div class="field-row"><div class="field-label">City</div><input class="field-input" type="text" value="Salt Lake City"></div>
+              <div class="field-row" style="width:46px;flex:none"><div class="field-label">State</div><input class="field-input" type="text" value="UT"></div>
+              <div class="field-row" style="width:66px;flex:none"><div class="field-label">ZIP</div><input class="field-input" type="text" value="84103"></div>
+            </div>
+            <div style="height:.5px;background:rgba(0,0,0,.07);margin:4px 0 12px"></div>
+            <div class="field-row-inline">
+              <div class="field-row"><div class="field-label">Year built</div><input class="field-input" type="number" value="2004" placeholder="e.g. 1998"></div>
+              <div class="field-row"><div class="field-label">Home type</div>
+                <select class="field-input" style="padding:0 8px;cursor:pointer">
+                  <option selected>Single family</option>
+                  <option>Townhome</option>
+                  <option>Condo</option>
+                  <option>Multi-family</option>
+                  <option>Mobile home</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row-inline">
+              <div class="field-row"><div class="field-label">Bedrooms</div>
+                <select class="field-input" style="padding:0 8px;cursor:pointer">
+                  <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6+</option>
+                </select>
+              </div>
+              <div class="field-row"><div class="field-label">Bathrooms</div>
+                <select class="field-input" style="padding:0 8px;cursor:pointer">
+                  <option>1</option><option selected>2</option><option>2.5</option><option>3</option><option>3.5</option><option>4+</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row-inline">
+              <div class="field-row"><div class="field-label">Sq footage</div><input class="field-input" type="text" value="1,892 sqft" placeholder="e.g. 2,400"></div>
+              <div class="field-row"><div class="field-label">Lot size</div><input class="field-input" type="text" value="0.18 acres" placeholder="e.g. 0.25 acres"></div>
+            </div>
             <div class="save-row"><button class="cancel-btn" onclick="closeSection('home')">Cancel</button><button class="save-btn" onclick="saveSection('home')">Save</button></div>
           </div>
         </div>
-        <div class="sl">Mortgage</div>
+        <div class="sl">Mortgage Info</div>
         <div class="section-card">
           <div class="section-toggle" onclick="toggleSection('mortgage')">
-            <div class="section-toggle-left"><div><div class="section-toggle-title">Mortgage details</div><div class="section-toggle-sub">4.875% &#183; 30yr &#183; $1,584/mo</div></div></div>
+            <div class="section-toggle-left"><div><div style="display:flex;align-items:center;gap:7px">
+                  <div class="section-toggle-title">Mortgage Info</div>
+                  <button onclick="event.stopPropagation();toggleMortgageTip()" style="width:18px;height:18px;border-radius:50%;background:#EDE9E2;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#3D4B5C;flex-shrink:0;font-family:-apple-system,sans-serif;line-height:1">?</button>
+                </div></div></div>
             <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="mortgage-edit-label">Edit</span><span style="color:#C4694A">&#8964;</span></div>
           </div>
+          <div id="mortgage-tip" style="display:none;background:#F7F4EF;border-top:.5px solid rgba(0,0,0,.07);padding:12px 14px">
+            <div style="font-size:12px;font-weight:600;color:#22303E;margin-bottom:8px">Where to find this info</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="font-size:11px;color:#3D4B5C;line-height:1.5"><span style="font-weight:600;color:#22303E">Total Loan Amount</span> — Your original loan balance at closing. Found on your closing disclosure or first mortgage statement.</div>
+              <div style="font-size:11px;color:#3D4B5C;line-height:1.5"><span style="font-weight:600;color:#22303E">Interest Rate</span> — Your fixed or current rate. Found on your loan agreement or monthly statement.</div>
+              <div style="font-size:11px;color:#3D4B5C;line-height:1.5"><span style="font-weight:600;color:#22303E">Loan Term</span> — Typically 15 or 30 years. Found on your closing disclosure.</div>
+              <div style="font-size:11px;color:#3D4B5C;line-height:1.5"><span style="font-weight:600;color:#22303E">Origination Date</span> — The date your loan officially started. Found on your note or closing disclosure.</div>
+              <div style="font-size:11px;color:#3D4B5C;line-height:1.5"><span style="font-weight:600;color:#22303E">Property Tax &amp; Insurance</span> — Check your county assessor website for taxes. Insurance is on your homeowner policy declarations page.</div>
+            </div>
+          </div>
           <div class="section-body" id="mortgage-body">
-            <div class="field-row"><div class="field-label">Lender</div><input class="field-input" type="text" value="First National Bank"></div>
-            <div class="field-row-inline" style="margin-top:10px"><div class="field-row"><div class="field-label">Rate (%)</div><input class="field-input" type="number" value="4.875" step="0.001"></div><div class="field-row"><div class="field-label">Monthly</div><input class="field-input" type="text" value="$1,584"></div></div>
+            <div class="mort-field">
+              <div class="mort-label">Lender</div>
+              <input class="mort-input" type="text" value="First National Bank">
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Total loan amount</div>
+              <div class="mort-input-prefix"><span class="mort-prefix">$</span><input type="text" value="300,000" class="mort-prefix-input"></div>
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Interest rate</div>
+              <div class="mort-input-prefix"><input type="number" value="4.875" step="0.001" class="mort-prefix-input"><span class="mort-prefix" style="border-left:.5px solid rgba(0,0,0,.1);border-right:none">%</span></div>
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Loan term</div>
+              <select class="mort-input" style="cursor:pointer">
+                <option>10 years</option><option>15 years</option><option>20 years</option><option selected>30 years</option>
+              </select>
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Loan origination date</div>
+              <input class="mort-input" type="text" value="March 15, 2019" placeholder="e.g. March 15, 2019">
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Monthly payment</div>
+              <div class="mort-input-prefix"><span class="mort-prefix">$</span><input type="text" value="1,584" class="mort-prefix-input"></div>
+            </div>
+            <div style="height:.5px;background:rgba(0,0,0,.07);margin:4px 0 16px"></div>
+            <div class="mort-field">
+              <div class="mort-label">Property tax <span style="font-weight:400;color:#8C8478">(annual)</span></div>
+              <div class="mort-input-prefix"><span class="mort-prefix">$</span><input type="text" value="2,440" class="mort-prefix-input"></div>
+            </div>
+            <div class="mort-field">
+              <div class="mort-label">Homeowner's insurance <span style="font-weight:400;color:#8C8478">(annual)</span></div>
+              <div class="mort-input-prefix"><span class="mort-prefix">$</span><input type="text" value="1,044" class="mort-prefix-input"></div>
+            </div>
             <div class="save-row"><button class="cancel-btn" onclick="closeSection('mortgage')">Cancel</button><button class="save-btn" onclick="saveSection('mortgage')">Save</button></div>
+            <div style="margin-top:12px;padding-top:12px;border-top:.5px solid rgba(0,0,0,.07);text-align:center">
+              <button onclick="showProfileView('psv-lender')" style="background:none;border:none;cursor:pointer;font-family:-apple-system,sans-serif;font-size:12px;color:#C4694A;font-weight:500;display:inline-flex;align-items:center;gap:5px">
+                Request a refinance quote &#8250;
+              </button>
+            </div>
           </div>
         </div>
         <div class="sl">Real estate agent</div>
@@ -606,42 +1495,388 @@ input[type=range]{width:100%;height:4px;accent-color:#C4694A;cursor:pointer}
           <div class="info-row"><span class="info-label">View full profile</span><span style="color:#C4C0B8">&#8250;</span></div>
         </div>
         <div class="sl">Document vault</div>
-        <div class="card">
-          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Home inspection report</div><div class="doc-meta">4.2 MB &#183; Mar 2019</div></div><button class="doc-btn">&#8595;</button></div>
-          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Closing disclosure</div><div class="doc-meta">1.8 MB &#183; Mar 2019</div></div><button class="doc-btn">&#8595;</button></div>
-          <div class="doc-row"><span class="pdf-badge">PDF</span><div class="doc-info"><div class="doc-name">Homeowner's insurance</div><div class="doc-meta">2.1 MB &#183; Jan 2025</div></div><button class="doc-btn">&#8595;</button></div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('vault')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Document vault</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="vault-edit-label">View</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="vault-body">
+          <!-- Home Inspection Report -->
+          <div class="doc-row" style="cursor:pointer" onclick="openPdfViewer('Home Inspection Report')">
+            <span class="pdf-badge">PDF</span>
+            <div class="doc-info"><div class="doc-name">Home Inspection Report</div><div class="doc-meta">4.2 MB &#183; Mar 2019</div></div>
+            <div style="display:flex;gap:5px">
+              <button class="doc-btn" title="Email" onclick="event.stopPropagation()">&#9993;</button>
+              <button class="doc-btn" title="Download" onclick="event.stopPropagation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12"/></svg></button>
+            </div>
+          </div>
+          <!-- Closing Disclosure -->
+          <div class="doc-row" style="border-top:.5px solid rgba(0,0,0,.06);cursor:pointer" onclick="openPdfViewer('Closing Disclosure')">
+            <span class="pdf-badge">PDF</span>
+            <div class="doc-info"><div class="doc-name">Closing Disclosure</div><div class="doc-meta">1.8 MB &#183; Mar 2019</div></div>
+            <div style="display:flex;gap:5px">
+              <button class="doc-btn" title="Email" onclick="event.stopPropagation()">&#9993;</button>
+              <button class="doc-btn" title="Download" onclick="event.stopPropagation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12"/></svg></button>
+            </div>
+          </div>
+          <!-- Homeowners Insurance -->
+          <div class="doc-row" style="border-top:.5px solid rgba(0,0,0,.06);cursor:pointer" onclick="openPdfViewer('Homeowners Insurance')">
+            <span class="pdf-badge">PDF</span>
+            <div class="doc-info"><div class="doc-name">Homeowners Insurance</div><div class="doc-meta">2.1 MB &#183; Jan 2025</div></div>
+            <div style="display:flex;gap:5px">
+              <button class="doc-btn" title="Email" onclick="event.stopPropagation()">&#9993;</button>
+              <button class="doc-btn" title="Download" onclick="event.stopPropagation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5 5-5M12 4v12"/></svg></button>
+            </div>
+          </div>
+          <!-- Warranty -->
+          <div class="doc-row" style="border-top:.5px solid rgba(0,0,0,.06)">
+            <span class="pdf-badge">PDF</span>
+            <div class="doc-info"><div class="doc-name">Warranty</div><div class="doc-meta">Not uploaded yet</div></div>
+            <div style="display:flex;gap:5px">
+              <button class="doc-btn" style="color:#C4694A;border-color:rgba(196,105,74,.3)" title="Upload"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 9l5-5 5 5M12 4v12"/></svg></button>
+            </div>
+          </div>
+          <!-- Other Documents -->
+          <div style="padding:10px 14px;border-top:.5px solid rgba(0,0,0,.06)">
+            <div style="font-size:12px;font-weight:600;color:#22303E;margin-bottom:6px">Other Documents</div>
+            <div style="font-size:11px;color:#8C8478;margin-bottom:8px">Receipts, permits, appraisals, tax docs, or anything else.</div>
+            <button onclick="document.getElementById('vault-upload').click()" style="display:flex;align-items:center;gap:6px;background:#F7F4EF;border:1px dashed rgba(61,75,92,.25);border-radius:9px;padding:9px 14px;width:100%;cursor:pointer;font-family:-apple-system,sans-serif;color:#3D4B5C;font-size:12px;font-weight:500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2zM12 11v6M9 14l3 -3l3 3"/></svg>
+              Upload a document
+            </button>
+            <input type="file" id="vault-upload" style="display:none" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+          </div>
+          </div>
         </div>
         <div class="sl">Subscription</div>
         <div class="sub-free"><div style="font-size:13px;font-weight:600;color:#3B6D11;margin-bottom:4px">100% covered &#183; $0/month</div><div style="font-size:12px;color:#3B6D11;line-height:1.5">James Monroe is an active Hearthward Pro subscriber. Your account is fully covered.</div></div>
         <div class="sl">Account</div>
         <div class="card">
-          <div class="acct-row" onclick="showProfileView('psv-family')"><span style="flex:1;font-size:13px;color:#22303E">Household members</span><span style="font-size:13px;color:#8C8478">2 of 4</span><span style="color:#C4C0B8;font-size:14px;margin-left:6px">&#8250;</span></div>
+          <div class="acct-row" onclick="showProfileView('psv-family')"><span style="flex:1;font-size:13px;color:#22303E">Shared Access</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4C0B8" stroke-width="2"><path d="M9 6l6 6l-6 6"/></svg><span style="color:#C4C0B8;font-size:14px;margin-left:6px">&#8250;</span></div>
           <div class="acct-row"><span style="flex:1;font-size:13px;color:#993C1D">Sign out</span></div>
         </div>
       </div>
       <div class="profile-subview" id="psv-agent">
         <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="display:flex;align-items:center;gap:12px"><div class="contact-av" style="width:46px;height:46px;font-size:14px">JM</div><div><div style="color:#fff;font-size:16px;font-weight:600">James Monroe</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">Monroe Realty Group</div></div></div></div>
         <div class="sl">Contact info</div>
-        <div class="card"><div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0182</span></div><div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">james@monroerealty.com</span></div><div class="info-row"><span class="info-label">License #</span><span class="info-val" style="font-family:monospace">UT-RE-091234</span></div></div>
+        <div class="card">
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0182</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">james@monroerealty.com</span></div>
+          <div class="info-row"><span class="info-label">Website</span><span class="info-val" style="font-size:12px;color:#C4694A">monroerealty.com</span></div>
+        </div>
+        <div style="display:flex;gap:8px;margin:0 14px 10px;width:calc(100% - 28px)">
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Call</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M8 9h8M8 13h6M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Text</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10zM3 7l9 6l9 -6"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Email</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Website</span>
+          </button>
+        </div>
         <div class="sl">Hearthward agent ID</div>
         <div class="card"><div class="qr-row"><div class="qr-box">QR CODE</div><div class="qr-info"><div class="qr-label">Agent ID</div><div class="qr-id">HW-AGT-4821</div><div style="font-size:11px;color:#8C8478;margin-top:2px">Scan to connect with James</div><div class="qr-btn">Copy ID</div></div></div></div>
       </div>
       <div class="profile-subview" id="psv-lender">
         <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="display:flex;align-items:center;gap:12px"><div class="contact-av" style="width:46px;height:46px;font-size:14px;background:#185FA5">RB</div><div><div style="color:#fff;font-size:16px;font-weight:600">Rachel Barnes</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">First National Bank</div></div></div></div>
         <div class="sl">Contact info</div>
-        <div class="card"><div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0294</span></div><div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">rachel@firstnational.com</span></div><div class="info-row"><span class="info-label">NMLS #</span><span class="info-val" style="font-family:monospace">204817</span></div></div>
+        <div class="card">
+          <div class="info-row"><span class="info-label">Phone</span><span class="info-val">(801) 555-0294</span></div>
+          <div class="info-row"><span class="info-label">Email</span><span class="info-val" style="font-size:12px">rachel@firstnational.com</span></div>
+          <div class="info-row"><span class="info-label">Website</span><span class="info-val" style="font-size:12px;color:#C4694A">firstnational.com</span></div>
+          <div class="info-row"><span class="info-label">NMLS #</span><span class="info-val" style="font-family:monospace">204817</span></div>
+        </div>
+        <div style="display:flex;gap:8px;margin:0 14px 10px;width:calc(100% - 28px)">
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Call</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M8 9h8M8 13h6M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Text</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10zM3 7l9 6l9 -6"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Email</span>
+          </button>
+          <button style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:.5px solid rgba(0,0,0,.1);border-radius:12px;padding:12px 8px;cursor:pointer;font-family:-apple-system,sans-serif">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4694A" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>
+            <span style="font-size:11px;font-weight:500;color:#22303E">Website</span>
+          </button>
+        </div>
         <div class="sl">Current loan</div>
         <div class="card"><div class="info-row"><span class="info-label">Rate</span><span class="info-val">4.875%</span></div><div class="info-row"><span class="info-label">Term</span><span class="info-val">30-year fixed</span></div><div class="info-row"><span class="info-label">Monthly</span><span class="info-val">$1,584/mo</span></div><div class="info-row"><span class="info-label">Balance</span><span class="info-val">$300,000</span></div></div>
       </div>
       <div class="profile-subview" id="psv-family">
-        <div class="phd-back" style="padding-bottom:12px"><button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button><div style="color:#fff;font-size:18px;font-weight:600">Household members</div><div style="color:rgba(255,255,255,.55);font-size:12px;margin-top:2px">2 of 4 slots used</div></div>
-        <div class="qr-card"><div class="qr-card-title">Invite via QR code</div><div class="qr-card-sub">Anyone who scans this gets access to your home data.</div><div style="display:flex;align-items:center;gap:14px"><div style="background:#fff;border-radius:8px;padding:8px;font-size:9px;font-weight:700;color:#22303E;flex-shrink:0;width:60px;height:60px;display:flex;align-items:center;justify-content:center;text-align:center">QR CODE</div><div><div style="color:rgba(255,255,255,.55);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">Household ID</div><div style="color:#fff;font-size:13px;font-weight:600;font-family:monospace;margin-bottom:8px">HW-HH-9214</div><button class="qr-share-btn">Share</button></div></div></div>
-        <div class="sl">Members</div>
-        <div class="card"><div class="member-row"><div class="mem-av" style="background:#3D4B5C">MC</div><div class="mem-info"><div class="mem-name">Michael Chen</div><div class="mem-role">Spouse &#183; Joined Mar 2024</div></div><span class="mem-status status-active">Active</span></div><div class="member-row"><div class="mem-av" style="background:#8C8478">EC</div><div class="mem-info"><div class="mem-name">Emma Chen</div><div class="mem-role">Child &#183; Invite sent</div></div><span class="mem-status status-pending">Pending</span></div></div>
+        <div class="phd-back" style="padding-bottom:12px">
+          <button class="back-btn" onclick="showProfileView('psv-main')">&#8592; Back to profile</button>
+          <div style="color:#fff;font-size:18px;font-weight:600">Shared Access</div>
+          <div style="color:rgba(255,255,255,.55);font-size:12px;margin-top:2px">123 Maple Street</div>
+        </div>
+        <div style="margin:0 14px 8px;width:calc(100% - 28px);background:#fff;border-radius:10px;border:.5px solid rgba(0,0,0,.1);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px">
+            <div style="width:8px;height:8px;border-radius:50%;background:#C4694A;flex-shrink:0"></div>
+            <span style="font-size:13px;font-weight:500;color:#22303E;flex:1">Invite link &#183; HW-HH-9214</span>
+            <div style="display:flex;gap:5px">
+              <button style="font-size:11px;font-weight:500;color:#C4694A;background:#FFF7F5;border:.5px solid rgba(196,105,74,.2);border-radius:20px;padding:3px 9px;cursor:pointer;font-family:-apple-system,sans-serif">Share</button>
+              <button style="font-size:11px;font-weight:500;color:#C4694A;background:#FFF7F5;border:.5px solid rgba(196,105,74,.2);border-radius:20px;padding:3px 9px;cursor:pointer;font-family:-apple-system,sans-serif">Copy</button>
+            </div>
+          </div>
+        </div>
+        <div style="margin:0 14px 8px;width:calc(100% - 28px)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <div class="sl" style="padding:0">Members</div>
+            <button class="invite-btn" onclick="alert('Invite sent!')">+ Invite</button>
+          </div>
+        </div>
+        <div class="card" style="margin-top:0">
+          <div class="prop-mem-header"><span class="prop-mem-label">123 Maple Street</span></div>
+          <div class="member-row" style="cursor:pointer" onclick="showMember('mc')">
+            <div class="mem-av" style="background:#3D4B5C">MC</div>
+            <div class="mem-info">
+              <div style="display:flex;align-items:center;gap:6px"><div class="mem-name">Michael Chen</div><span class="role-chip role-partner">Partner</span></div>
+              <div class="mem-role">Joined Mar 2024</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+              <span class="access-chip access-full">Full access</span>
+              <span style="color:#C4C0B8;font-size:14px">&#8250;</span>
+            </div>
+          </div>
+          <div class="member-row" style="cursor:pointer" onclick="showMember('ec')">
+            <div class="mem-av" style="background:#8C8478">EC</div>
+            <div class="mem-info">
+              <div style="display:flex;align-items:center;gap:6px"><div class="mem-name">Emma Chen</div><span class="role-chip role-family">Family</span></div>
+              <div class="mem-role">Invite pending</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+              <span class="access-chip access-limited">Limited</span>
+              <span style="color:#C4C0B8;font-size:14px">&#8250;</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="prop-mem-header"><span class="prop-mem-label">456 Oak Avenue (Rental)</span></div>
+          <div class="member-row" style="cursor:pointer" onclick="showMember('jd')">
+            <div class="mem-av" style="background:#854F0B">JD</div>
+            <div class="mem-info">
+              <div style="display:flex;align-items:center;gap:6px"><div class="mem-name">Jake Davis</div><span class="role-chip role-tenant">Tenant</span></div>
+              <div class="mem-role">Lease ends Dec 2025</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+              <span class="access-chip access-view">View only</span>
+              <span class="expiry-chip">Expires Dec 2025</span>
+              <span style="color:#C4C0B8;font-size:14px">&#8250;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBER DETAIL: Michael Chen -->
+      <div class="profile-subview" id="psv-member-mc">
+        <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-family')">&#8592; Back to members</button><div style="display:flex;align-items:center;gap:12px"><div class="mem-av" style="width:46px;height:46px;font-size:14px;background:#3D4B5C">MC</div><div><div style="color:#fff;font-size:16px;font-weight:600">Michael Chen</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">123 Maple Street &#183; Joined Mar 2024</div></div></div></div>
+        <div class="sl">Role</div>
+        <div class="card" style="padding:12px 14px">
+          <div style="font-size:12px;color:#8C8478;margin-bottom:8px">Defines default access level. You can override individual tabs below.</div>
+          <div class="role-selector">
+            <button class="role-opt">Owner</button>
+            <button class="role-opt sel">Partner</button>
+            <button class="role-opt">Family</button>
+            <button class="role-opt">Property Manager</button>
+            <button class="role-opt">Tenant</button>
+          </div>
+        </div>
+        <div class="sl">Tab access</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home dashboard</div><div class="toggle-sublabel">Agent info, home value snapshot, coming up tasks</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance</div><div class="toggle-sublabel">View and complete maintenance tasks, appliance details</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home Value</div><div class="toggle-sublabel">Estimated value, equity calculator, mortgage details</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Trusted Partners</div><div class="toggle-sublabel">View and contact vetted contractors</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Profile &amp; settings</div><div class="toggle-sublabel">View home details and mortgage info (read-only)</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Document vault</div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('vault')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Document vault</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="vault-edit-label">View</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="vault-body">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Inspection report</div><div class="toggle-sublabel">4.2 MB &#183; Mar 2019</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Closing disclosure</div><div class="toggle-sublabel">1.8 MB &#183; Mar 2019 &#183; Sensitive</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Homeowner's insurance</div><div class="toggle-sublabel">2.1 MB &#183; Jan 2025</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Notifications</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance reminders</div><div class="toggle-sublabel">Forward task due reminders to this member</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Agent tips &amp; posts</div><div class="toggle-sublabel">Forward market updates from James Monroe</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Equity alerts</div><div class="toggle-sublabel">Notify when home value changes significantly</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div style="margin:10px 14px 0;width:calc(100% - 28px);display:flex;gap:8px">
+          <button style="flex:1;background:#C4694A;color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif">Save changes</button>
+          <button style="background:#FAECE7;color:#993C1D;border:none;border-radius:9px;padding:11px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif">Remove</button>
+        </div>
+      </div>
+
+      <!-- MEMBER DETAIL: Emma Chen -->
+      <div class="profile-subview" id="psv-member-ec">
+        <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-family')">&#8592; Back to members</button><div style="display:flex;align-items:center;gap:12px"><div class="mem-av" style="width:46px;height:46px;font-size:14px;background:#8C8478">EC</div><div><div style="color:#fff;font-size:16px;font-weight:600">Emma Chen</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">123 Maple Street &#183; Invite pending</div></div></div></div>
+        <div style="margin:10px 14px 0;width:calc(100% - 28px);background:#FFF3E0;border-radius:10px;padding:10px 12px"><div style="font-size:12px;font-weight:600;color:#854F0B">Invite not yet accepted</div><div style="font-size:11px;color:#854F0B;opacity:.8;margin-top:2px">Sent to emma@email.com &#183; <span style="text-decoration:underline;cursor:pointer">Resend invite</span></div></div>
+        <div class="sl">Role</div>
+        <div class="card" style="padding:12px 14px">
+          <div class="role-selector">
+            <button class="role-opt">Owner</button>
+            <button class="role-opt">Partner</button>
+            <button class="role-opt sel">Family</button>
+            <button class="role-opt">Property Manager</button>
+            <button class="role-opt">Tenant</button>
+          </div>
+        </div>
+        <div class="sl">Tab access</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home dashboard</div><div class="toggle-sublabel">Agent info, home value snapshot, coming up tasks</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance</div><div class="toggle-sublabel">View and complete maintenance tasks, appliance details</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home Value</div><div class="toggle-sublabel">Equity calculator, mortgage details</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Trusted Partners</div><div class="toggle-sublabel">View and contact vetted contractors</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Profile &amp; settings</div><div class="toggle-sublabel">View home details (read-only)</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Document vault</div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('vault')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Document vault</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="vault-edit-label">View</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="vault-body">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Inspection report</div><div class="toggle-sublabel">4.2 MB &#183; Mar 2019</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Closing disclosure</div><div class="toggle-sublabel">1.8 MB &#183; Mar 2019 &#183; Sensitive</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Homeowner's insurance</div><div class="toggle-sublabel">2.1 MB &#183; Jan 2025</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Notifications</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance reminders</div><div class="toggle-sublabel">Forward task due reminders to this member</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Agent tips &amp; posts</div><div class="toggle-sublabel">Forward market updates from James Monroe</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div style="margin:10px 14px 0;width:calc(100% - 28px);display:flex;gap:8px">
+          <button style="flex:1;background:#C4694A;color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif">Save changes</button>
+          <button style="background:#FAECE7;color:#993C1D;border:none;border-radius:9px;padding:11px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif">Cancel invite</button>
+        </div>
+      </div>
+
+      <!-- MEMBER DETAIL: Jake Davis (Tenant) -->
+      <div class="profile-subview" id="psv-member-jd">
+        <div class="phd-back"><button class="back-btn" onclick="showProfileView('psv-family')">&#8592; Back to members</button><div style="display:flex;align-items:center;gap:12px"><div class="mem-av" style="width:46px;height:46px;font-size:14px;background:#854F0B">JD</div><div><div style="color:#fff;font-size:16px;font-weight:600">Jake Davis</div><div style="color:rgba(255,255,255,.6);font-size:12px;margin-top:2px">456 Oak Avenue &#183; Tenant</div></div></div></div>
+        <div class="sl">Role</div>
+        <div class="card" style="padding:12px 14px">
+          <div class="role-selector">
+            <button class="role-opt">Owner</button>
+            <button class="role-opt">Partner</button>
+            <button class="role-opt">Family</button>
+            <button class="role-opt">Property Manager</button>
+            <button class="role-opt sel">Tenant</button>
+          </div>
+        </div>
+        <div class="sl">Tab access</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home dashboard</div><div class="toggle-sublabel">Agent info, home value, coming up tasks</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance</div><div class="toggle-sublabel">View and complete maintenance tasks</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Home Value</div><div class="toggle-sublabel">Equity calculator, mortgage details</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Trusted Partners</div><div class="toggle-sublabel">View and contact vetted contractors</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Profile &amp; settings</div><div class="toggle-sublabel">View property details (read-only)</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Document vault</div>
+        <div class="section-card">
+          <div class="section-toggle" onclick="toggleSection('vault')">
+            <div class="section-toggle-left"><div><div class="section-toggle-title">Document vault</div></div></div>
+            <div style="display:flex;align-items:center;gap:6px"><span class="section-edit-label" id="vault-edit-label">View</span><span style="color:#C4694A">&#8964;</span></div>
+          </div>
+          <div class="section-body" id="vault-body">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Inspection report</div><div class="toggle-sublabel">4.2 MB &#183; Mar 2019</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Closing disclosure</div><div class="toggle-sublabel">1.8 MB &#183; Sensitive &#183; Not recommended for tenants</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Homeowner's insurance</div><div class="toggle-sublabel">2.1 MB &#183; Jan 2025</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div class="sl">Notifications</div>
+        <div class="card">
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Maintenance reminders</div><div class="toggle-sublabel">Forward task due reminders to tenant</div></div><label class="hw-toggle"><input type="checkbox" checked><span class="hw-toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-label">Agent tips &amp; posts</div><div class="toggle-sublabel">Forward market updates</div></div><label class="hw-toggle"><input type="checkbox"><span class="hw-toggle-slider"></span></label></div>
+        </div>
+        <div style="margin:10px 14px 0;width:calc(100% - 28px);display:flex;gap:8px">
+          <button style="flex:1;background:#C4694A;color:#fff;border:none;border-radius:9px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif">Save changes</button>
+          <button style="background:#FAECE7;color:#993C1D;border:none;border-radius:9px;padding:11px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:-apple-system,sans-serif">Remove</button>
+        </div>
       </div>
     </div>
 
   </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- PDF VIEWER OVERLAY -->
+  <div class="pdf-viewer" id="pdf-viewer">
+    <div class="pdf-viewer-header">
+      <button onclick="closePdfViewer()" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;font-size:16px;flex-shrink:0">&#8592;</button>
+      <div class="pdf-viewer-title" id="pdf-viewer-title">Document</div>
+      <div class="pdf-viewer-actions">
+        <button class="pdf-viewer-btn">&#9993; Email</button>
+        <button class="pdf-viewer-btn">&#8595; Save</button>
+      </div>
+    </div>
+    <div class="pdf-viewer-scroll">
+      <!-- Page 1 -->
+      <div class="pdf-page">
+        <div class="pdf-page-header">
+          <div>
+            <div style="font-size:16px;font-weight:700;color:#22303E;margin-bottom:4px" id="pdf-doc-title">Home Inspection Report</div>
+            <div style="font-size:11px;color:#8C8478">123 Maple Street, Salt Lake City UT 84103</div>
+          </div>
+          <div class="pdf-page-num">Page 1 of 3</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#F7F4EF;border-radius:6px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:#22303E;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">Inspection Summary</div>
+            <div style="font-size:12px;color:#3D4B5C;line-height:1.6">Property inspected on March 12, 2019. Inspector: David Park, Certified Home Inspector #12847. Total items reviewed: 247.</div>
+          </div>
+          <div style="height:.5px;background:rgba(0,0,0,.08)"></div>
+          <div style="font-size:11px;font-weight:600;color:#22303E;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Roof &amp; Exterior</div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Roof in good condition. Estimated 6-8 years remaining lifespan. No visible damage or missing shingles.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#854F0B;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Gutters show minor debris accumulation. Recommend cleaning within 30 days.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Foundation appears structurally sound. No visible cracks or settling.</div></div>
+          <div style="height:.5px;background:rgba(0,0,0,.08)"></div>
+          <div style="font-size:11px;font-weight:600;color:#22303E;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">HVAC Systems</div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Furnace (Carrier, 2019) operating normally. Filter recently replaced.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#993C1D;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Air conditioning unit due for annual service before summer season.</div></div>
+        </div>
+      </div>
+      <!-- Page 2 -->
+      <div class="pdf-page">
+        <div class="pdf-page-header">
+          <div style="font-size:13px;font-weight:600;color:#22303E">Home Inspection Report</div>
+          <div class="pdf-page-num">Page 2 of 3</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:11px;font-weight:600;color:#22303E;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Plumbing</div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">Water heater (6 years old) functioning properly. Annual flush recommended.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">All faucets and fixtures tested, no leaks detected.</div></div>
+          <div style="height:.5px;background:rgba(0,0,0,.08)"></div>
+          <div style="font-size:11px;font-weight:600;color:#22303E;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Electrical</div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">200 amp panel, all breakers labeled. No double-tapping observed.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#854F0B;flex-shrink:0;margin-top:3px"></div><div style="font-size:12px;color:#3D4B5C;line-height:1.5">GFCI outlets missing in bathrooms. Recommend installation by licensed electrician.</div></div>
+          <div style="height:.5px;background:rgba(0,0,0,.08)"></div>
+          <div style="background:#EAF3DE;border-radius:8px;padding:10px 12px">
+            <div style="font-size:11px;font-weight:600;color:#3B6D11;margin-bottom:4px">Overall Rating: Good</div>
+            <div style="font-size:12px;color:#3D4B5C;line-height:1.5">Property is in good condition for its age. No major deficiencies noted. Recommended repairs are minor and routine.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="bottom-nav">
     <button class="active" id="nav-home" onclick="switchTab('home')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l-2 0l9 -9l9 9l-2 0M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/></svg><span>Home</span></button>
     <button id="nav-maint" onclick="switchTab('maint')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5"/></svg><span>Maintenance</span></button>
@@ -694,7 +1929,8 @@ function showProfileView(id){
 function toggleSection(id){
   var b=document.getElementById(id+'-body'),l=document.getElementById(id+'-edit-label'),o=b.classList.contains('open');
   b.classList.toggle('open',!o);
-  if(l)l.textContent=o?'Edit':'Done';
+  if(id==='vault'){if(l)l.textContent=o?'View':'Hide';}
+  else{if(l)l.textContent=o?'Edit':'Done';}
 }
 function closeSection(id){
   var b=document.getElementById(id+'-body'),l=document.getElementById(id+'-edit-label');
@@ -715,18 +1951,18 @@ function closeApp(){
 function updateEquity(){
   var sale=parseFloat(document.getElementById('sale-price').value);
   var loan=parseFloat(document.getElementById('loan-balance').value);
-  var pct=parseFloat(document.getElementById('selling-costs-pct').value);
+  var pctEl=document.getElementById('selling-costs-pct');var pct=pctEl?parseFloat(pctEl.value):6;
   var costs=sale*pct/100,equity=sale-loan,net=sale-loan-costs;
   var ratio=Math.max(0,Math.min(1,equity/sale));
   var offset=(2*Math.PI*50*(1-ratio)).toFixed(1);
   document.getElementById('sale-price-display').textContent=fmt(sale);
   document.getElementById('loan-balance-display').textContent=fmt(loan);
-  document.getElementById('selling-costs-display').textContent=fmt(costs);
+  var scd=document.getElementById('selling-costs-display');if(scd)scd.textContent=fmt(costs);
   document.getElementById('equity-display').textContent=fmt(equity);
   document.getElementById('equity-arc').setAttribute('stroke-dashoffset',offset);
   document.getElementById('eq-sale').textContent=fmt(sale);
   document.getElementById('eq-loan').textContent=fmt(loan);
-  document.getElementById('eq-net').textContent=fmt(net);
+  var eqNet=document.getElementById('eq-net');if(eqNet)eqNet.textContent=fmt(equity);
 }
 function setTerm(t,el){
   loanTerm=t;
@@ -746,9 +1982,23 @@ function calcMortgage(){
   document.getElementById('mort-ins').textContent=fmt(ins);
   document.getElementById('mort-sub').textContent=loanTerm+'-yr fixed \u00b7 '+fmt(principal)+' loan';
 }
-var props=[{id:'p1',addr:'123 Maple Street',city:'Salt Lake City, UT',type:'Primary',val:'$487,200'},{id:'p2',addr:'456 Oak Avenue',city:'Park City, UT',type:'Rental',val:'$632,000'}];
+var props=[{id:'p1',addr:'123 Maple Street',city:'Salt Lake City, UT',type:'Primary',val:'$487,200',nick:'The Maple House'},{id:'p2',addr:'456 Oak Avenue',city:'Park City, UT',type:'Rental',val:'$632,000',nick:''}];
 var activePropId='p1',propDropOpen=false,newPropType='Primary';
 function getActiveProp(){return props.find(function(p){return p.id===activePropId;})||props[0];}
+function dispName(p){return (p.nick&&p.nick.trim())?p.nick:p.addr;}
+function toggleMortgageTip(){
+  var t=document.getElementById('mortgage-tip');
+  if(t)t.style.display=t.style.display==='none'?'block':'none';
+}
+function updateNickname(val){
+  var p=getActiveProp();
+  p.nick=val;
+  var display=dispName(p);
+  var tn=document.getElementById('prop-trigger-name');
+  var hs=document.getElementById('home-section-title');
+  if(tn)tn.textContent=display;
+  if(hs)hs.textContent=display;
+}
 function renderPropOptions(){
   var el=document.getElementById('prop-options');if(!el)return;
   var html='';
@@ -756,7 +2006,7 @@ function renderPropOptions(){
     var isA=p.id===activePropId;
     html+='<div style="padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;background:'+(isA?'#FDFCFA':'#fff')+';border-top:0.5px solid rgba(0,0,0,0.06)" onclick="switchProp(\''+p.id+'\')">'
       +'<div style="width:30px;height:30px;border-radius:8px;background:#FFF7F5;border:1.5px solid #C4694A;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px">&#8962;</div>'
-      +'<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:#22303E">'+p.addr+'</div><div style="font-size:11px;color:#8C8478;margin-top:1px">'+p.city+' \u00b7 '+p.type+' \u00b7 '+p.val+'</div></div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:#22303E">'+dispName(p)+'</div><div style="font-size:11px;color:#8C8478;margin-top:1px">'+p.city+' \u00b7 '+p.type+' \u00b7 '+p.val+'</div></div>'
       +(isA?'<span style="color:#C4694A">&#10003;</span>':'')+'</div>';
   });
   el.innerHTML=html;
@@ -779,8 +2029,8 @@ function closePropDropdown(){
 }
 function switchProp(id){
   activePropId=id;var p=getActiveProp();
-  document.getElementById('prop-trigger-name').textContent=p.addr;
-  document.getElementById('prop-trigger-meta').textContent=p.city+' \u00b7 '+p.type;
+  document.getElementById('prop-trigger-name').textContent=dispName(p);if(document.getElementById('home-section-title'))document.getElementById('home-section-title').textContent=dispName(p);
+  var tm=document.getElementById('prop-trigger-meta');if(tm)tm.textContent=p.city+' \u00b7 '+p.type;
   renderPropOptions();setTimeout(closePropDropdown,200);
 }
 function showPropAddForm(){
@@ -805,9 +2055,80 @@ function saveNewProp(){
   props.push({id:'p'+Date.now(),addr:addr,city:city,type:newPropType,val:'--'});
   activePropId=props[props.length-1].id;
   var p=getActiveProp();
-  document.getElementById('prop-trigger-name').textContent=p.addr;
-  document.getElementById('prop-trigger-meta').textContent=p.city+' \u00b7 '+p.type;
+  document.getElementById('prop-trigger-name').textContent=dispName(p);if(document.getElementById('home-section-title'))document.getElementById('home-section-title').textContent=dispName(p);
+  var tm=document.getElementById('prop-trigger-meta');if(tm)tm.textContent=p.city+' \u00b7 '+p.type;
   closePropDropdown();
+}
+function showMember(id){
+  document.querySelectorAll('.profile-subview').forEach(function(v){v.classList.remove('active');});
+  var el = document.getElementById('psv-member-'+id);
+  if(el) el.classList.add('active');
+  document.querySelector('.scroll').scrollTop=0;
+}
+function openPdfViewer(title){
+  var viewer=document.getElementById('pdf-viewer');
+  var titleEl=document.getElementById('pdf-viewer-title');
+  var docTitle=document.getElementById('pdf-doc-title');
+  if(titleEl)titleEl.textContent=title;
+  if(docTitle)docTitle.textContent=title;
+  if(viewer)viewer.classList.add('open');
+}
+function selSlogType(el){
+  var row=el.parentElement;
+  row.querySelectorAll('.slog-type-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+}
+function toggleSlog(btn){
+  var form=btn.nextElementSibling;
+  if(form){
+    var open=form.style.display!=='none';
+    form.style.display=open?'none':'block';
+    btn.querySelector('.slog-toggle-label').textContent=open?'+ Add service entry':'- Cancel';
+  }
+}
+function addSlogEntry(btn){
+  var form=btn.parentElement;
+  var inputs=form.querySelectorAll('.slog-input');
+  var title=inputs[0].value.trim();
+  var date=inputs[1].value.trim();
+  if(!title)return;
+  var container=form.parentElement;
+  var toggle=form.previousElementSibling;
+  var entry=document.createElement('div');
+  entry.className='slog-entry';
+  entry.innerHTML='<div class="slog-dot-wrap"><div class="slog-dot"></div></div><div class="slog-content"><div class="slog-date">'+(date||'Today')+'</div><div class="slog-title">'+title+'</div></div>';
+  container.insertBefore(entry, toggle);
+  inputs[0].value='';inputs[1].value='';
+  form.style.display='none';
+  toggle.querySelector('.slog-toggle-label').textContent='+ Add service entry';
+}
+function loadAppPhoto(input){
+  if(!input.files||!input.files[0])return;
+  var reader=new FileReader();
+  var slot=input.parentElement;
+  reader.onload=function(e){
+    slot.innerHTML='';
+    var img=document.createElement('img');
+    img.src=e.target.result;
+    img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:9px';
+    var removeBtn=document.createElement('button');
+    removeBtn.className='app-photo-slot-remove';
+    removeBtn.innerHTML='&#10005;';
+    removeBtn.onclick=function(ev){
+      ev.stopPropagation();
+      slot.innerHTML='<input type="file" accept="image/*" style="display:none" onchange="loadAppPhoto(this)"><svg class="app-photo-slot-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6zM3 16l5-5a2 2 0 0 1 2.828 0L15 15M14 14l1.5-1.5a2 2 0 0 1 2.828 0L21 16"/></svg><span class="app-photo-slot-label">Add photo</span>';
+      slot.onclick=function(){slot.querySelector('input').click();};
+    };
+    slot.appendChild(img);
+    slot.appendChild(removeBtn);
+    slot.classList.add('has-photo');
+    slot.onclick=null;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+function closePdfViewer(){
+  var viewer=document.getElementById('pdf-viewer');
+  if(viewer)viewer.classList.remove('open');
 }
 updateEquity();
 calcMortgage();
